@@ -26,36 +26,84 @@
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
             data-accordion="false">
-            <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
+            <li class="nav-item">
+                <a href="{{route('dashboard')}}" class="nav-link {{request()->routeIs('dashboard') ? 'active' : ''}}">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
                         Dashboard
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item  {{request()->routeIs('roles.*') ? 'menu-open' : ''}}">
+                <a href="#" class="nav-link {{request()->routeIs('roles.*') ? 'active' : ''}}">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                        Quyền
                         <i class="right fas fa-angle-left"></i>
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="./index.html" class="nav-link active">
+                        <a href="{{ route('roles.index') }}" class="nav-link {{request()->routeIs('roles.index') ? 'active' : ''}}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Dashboard v1</p>
+                            <p>Danh sách quyền </p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="./index2.html" class="nav-link">
+                        <a href="{{ route('roles.create') }}" class="nav-link {{request()->routeIs('roles.create') ? 'active' : ''}}">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Dashboard v2</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="./index3.html" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Dashboard v3</p>
+                            <p>Thêm quyền</p>
                         </a>
                     </li>
                 </ul>
             </li>
 
+            <li class="nav-item {{request()->routeIs('users.*') ? 'menu-open' : ''}}">
+                <a href="{{route('users.index')}}" class="nav-link {{ request()->routeIs('users.*') ? 'active' : ''}}">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>
+                        Người dùng
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.index') ? 'active' : ''}}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Danh sách </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('users.create')}}" class="nav-link {{ request()->routeIs('users.create') ? 'active' : ''}}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Thêm mới</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item {{request()->routeIs('categories.*') ? 'menu-open' : ''}}">
+                <a href="{{route('categories.index')}}" class="nav-link {{ request()->routeIs('categories.*') ? 'active' : ''}}">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>
+                        Danh mục
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.index') ? 'active' : ''}}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Danh sách</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('users.create')}}" class="nav-link {{ request()->routeIs('users.create') ? 'active' : ''}}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Thêm mới</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </nav>
     <!-- /.sidebar-menu -->
