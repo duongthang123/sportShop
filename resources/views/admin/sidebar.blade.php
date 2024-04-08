@@ -91,13 +91,13 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
-                        <a href="{{ route('users.index') }}" class="nav-link {{ request()->routeIs('users.index') ? 'active' : ''}}">
+                        <a href="{{ route('categories.index') }}" class="nav-link {{ request()->routeIs('categories.index') ? 'active' : ''}}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Danh sách</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('users.create')}}" class="nav-link {{ request()->routeIs('users.create') ? 'active' : ''}}">
+                        <a href="{{route('categories.create')}}" class="nav-link {{ request()->routeIs('categories.create') ? 'active' : ''}}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Thêm mới</p>
                         </a>
