@@ -43,4 +43,13 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth']], function () {
     Route::DELETE('/{user}', [\App\Http\Controllers\Admin\UserController::class, 'destroy']);
 });
 
+Route::group(['prefix' => 'categories', 'middleware' => ['auth']], function () {
+    Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('categories.index');
+    Route::get('/create', [\App\Http\Controllers\Admin\UserController::class, 'create'])->name('categories.create');
+    Route::get('/{category}', [\App\Http\Controllers\Admin\UserController::class, 'show'])->name('categories.show');
+    Route::get('/{category}/edit', [\App\Http\Controllers\Admin\UserController::class, 'edit'])->name('categories.edit');
+    Route::post('/store', [\App\Http\Controllers\Admin\UserController::class, 'store'])->name('categories.store');
+    Route::put('/{category}', [\App\Http\Controllers\Admin\UserController::class, 'update'])->name('categories.update');
+    Route::DELETE('/{category}', [\App\Http\Controllers\Admin\UserController::class, 'destroy']);
+});
 Route::resource('/categories', \App\Http\Controllers\Admin\CategoryController::class);

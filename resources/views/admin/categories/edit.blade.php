@@ -1,34 +1,19 @@
 @extends('admin.layouts.index')
 
-@section('title', 'Edit User')
+@section('title', 'Chỉnh sửa danh mục')
 @section('content')
     <div class="card-body">
-        <h1>Edit User</h1>
+        <h1>Chỉnh sửa danh mục</h1>
 
-        <form action="{{route('users.update', $user->id)}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('categories.update', $category->id)}}" method="POST">
             @csrf
             @method('PUT')
             <div>
                 <div class="row">
                     <div class="col-md-6">
-                        <label>Image</label>
-                        <input type="file" name="image" accept="image/*" id="image-input" class="form-control">
-
-                        @error('image')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="col-md-6">
-                        <img src="{{$user->image_path}}" id="show-image" width="300px"  alt=""/>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
                         <div class="form-group">
-                            <label for="user_name">Name</label>
-                            <input type="text" name="name" value="{{ old('name') ?? $user->name }}" class="form-control" id="user_name" placeholder="Enter your name..">
+                            <label for="cate_name">Tên danh mục</label>
+                            <input type="text" name="name" value="{{ old('name') ?? $category->name }}" class="form-control" id="cate_name" placeholder="Nhập tên danh mục...">
 
                             @error('name')
                             <span class="text-danger">{{$message}}</span>
@@ -37,10 +22,17 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="user_email">Email</label>
-                            <input type="email" value="{{ old('email') ?? $user->email}}" name="email" class="form-control" id="user_email"
-                                   placeholder="Email...">
-                            @error('email')
+                            <label>Danh mục</label>
+                            <select name="parent_id" class="form-control">
+                                <option value="0" {{$category->parent_id === 0 ? 'selected' : ''}}>Danh mục cha </option>
+                                @foreach($categories as $categoryParent)
+                                    <option value="{{$categoryParent->id}}"
+                                        {{$category->parent_id === $categoryParent->id ? 'selected' : ''}}
+                                    >{{$categoryParent->name}}</option>
+                                @endforeach
+                            </select>
+
+                            @error('parent_id')
                             <span class="text-danger">{{$message}}</span>
                             @enderror
                         </div>
@@ -50,100 +42,27 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="user_phone">Phone</label>
-                            <input type="text" value="{{ old('phone') ?? $user->phone}}" name="phone" class="form-control" id="user_phone"
-                                   placeholder="Phone number...">
-                            @error('phone')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Gender</label>
-                            <select name="gender" class="form-control">
-                                <option value="male" {{$user->gender === 'male' ? 'selected' : ''}}>Male</option>
-                                <option value="female" {{$user->gender === 'female' ? 'selected' : ''}}>FeMale</option>
-                            </select>
-
-                            @error('group')
-                            <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="user_address">Address</label>
-                    <textarea type="text" name="address" class="form-control" id="user_address"
-                              placeholder="Address...">{{ old('address') ?? $user->address }}</textarea>
-                    @error('address')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                </div>
-
-                <div class="form-group">
-                    <label for="user_password">Password</label>
-                    <input type="password" name="password" class="form-control" id="user_password"
-                           placeholder="Password...">
-                    @error('password')
-                    <span class="text-danger">{{$message}}</span>
-                    @enderror
-                </div>
-
-
-                <div class="form-group">
-                    <label for="">Roles</label>
-                    <div class="row">
-                        @foreach($roles as $groupName => $role)
-                            <div class="col-4 mt-4">
-                                <h5>{{$groupName}}</h5>
-
-                                <div>
-                                    @foreach($role as $item)
-                                        <div class="form-check">
-                                            <input id="customCheck1_{{$item->id}}" class="form-check-input"
-                                                   name="roles_id[]" type="checkbox" value="{{$item->id}}"
-                                            {{$user->roles->contains('name', $item->name) ? 'checked' : ''}}
-                                            >
-                                            <label class="form-check-label"
-                                                   for="customCheck1_{{$item->id}}">{{$item->display_name}}</label>
-                                        </div>
-                                    @endforeach
-                                </div>
+                            <label for="user_phone">Kích hoạt</label>
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" value="1" type="radio" id="active" name="active"
+                                       {{$category->active === 1 ? 'checked' : ''}}>
+                                <label for="active" class="custom-control-label">Có</label>
                             </div>
-                        @endforeach
+
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" value="0" type="radio" id="no_active" name="active"
+                                    {{$category->active === 0 ? 'checked' : ''}}>
+                                <label for="no_active" class="custom-control-label">Không</label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Cập nhật</button>
             </div>
         </form>
     </div>
 @endsection
 
-
-@section('script')
-    <script>
-        $(() => {
-            function readURL(input) {
-                if(input.files && input.files[0]) {
-                    var render = new FileReader();
-                    render.onload = function (e) {
-                        $('#show-image').attr('src', e.target.result);
-                        console.log(input.files[0].name);
-                    };
-                    render.readAsDataURL(input.files[0]);
-                }
-            }
-
-            $('#image-input').change(function () {
-                readURL(this);
-            });
-        });
-    </script>
-@endsection
