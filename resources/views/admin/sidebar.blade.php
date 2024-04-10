@@ -36,7 +36,7 @@
             </li>
             <li class="nav-item  {{request()->routeIs('roles.*') ? 'menu-open' : ''}}">
                 <a href="#" class="nav-link {{request()->routeIs('roles.*') ? 'active' : ''}}">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <i class="nav-icon fas fa-user-tag"></i>
                     <p>
                         Quyền
                         <i class="right fas fa-angle-left"></i>
@@ -83,7 +83,7 @@
             </li>
             <li class="nav-item {{request()->routeIs('categories.*') ? 'menu-open' : ''}}">
                 <a href="{{route('categories.index')}}" class="nav-link {{ request()->routeIs('categories.*') ? 'active' : ''}}">
-                    <i class="nav-icon fas fa-user"></i>
+                    <i class="nav-icon fas fa-bars"></i>
                     <p>
                         Danh mục
                         <i class="right fas fa-angle-left"></i>
@@ -98,6 +98,29 @@
                     </li>
                     <li class="nav-item">
                         <a href="{{route('categories.create')}}" class="nav-link {{ request()->routeIs('categories.create') ? 'active' : ''}}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Thêm mới</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item {{request()->routeIs('products.*') ? 'menu-open' : ''}}">
+                <a href="{{route('products.index')}}" class="nav-link {{ request()->routeIs('products.*') ? 'active' : ''}}">
+                    <i class="nav-icon fab fa-product-hunt"></i>
+                    <p>
+                        Sản phẩm
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('products.index') }}" class="nav-link {{ request()->routeIs('products.index') ? 'active' : ''}}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Danh sách</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('products.create')}}" class="nav-link {{ request()->routeIs('products.create') ? 'active' : ''}}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Thêm mới</p>
                         </a>

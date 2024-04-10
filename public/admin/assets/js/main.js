@@ -16,7 +16,7 @@ function removeRow(url)
             dataType: 'JSON',
             success: function (result) {
                 if(result.error === false) {
-                    alert(result.message);
+                    // alert(result.message);
                     location.reload();
                 } else {
                     alert('Có lỗi khi xóa !')
@@ -25,3 +25,4 @@ function removeRow(url)
         })
     }
 }
+
