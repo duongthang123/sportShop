@@ -20,6 +20,11 @@ class CategoryRepository
         return $this->category::latest('id')->paginate(10);
     }
 
+    public function getCategoryForProduct($active = 1)
+    {
+        return $this->category::where('active', $active)->get();
+    }
+
     public function getCateParent($parentId = 0)
     {
         return $this->category::where(['parent_id' => $parentId, 'active' => 1])->get();

@@ -19,6 +19,11 @@ class CategoryService
         return $this->categoryRepository->getAll();
     }
 
+    public function getCategoryForProduct()
+    {
+        return $this->categoryRepository->getCategoryForProduct();
+    }
+
     public function getCateParent()
     {
         return $this->categoryRepository->getCateParent();
