@@ -1,9 +1,9 @@
 @extends('admin.layouts.index')
 
-@section('title', 'Quản lý sản phẩm')
+@section('title', 'Quản lý mã giảm giá')
 @section('content')
     <div class="card-body">
-        <h1>Sản phẩm</h1>
+        <h1>Mã giảm giá</h1>
         <div class="mb-2">
             <a href="{{route('coupons.create')}}" class="btn btn-primary">Thêm mới</a>
         </div>
