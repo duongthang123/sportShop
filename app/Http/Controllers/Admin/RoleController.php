@@ -84,9 +84,9 @@ class RoleController extends Controller
         $result = $this->roleService->destroy($id);
 
         if($result) {
+            toastr()->success('Xóa quyền thành công');
             return response()->json([
                 'error' => false,
-                'message' => 'Xoá thành công',
             ]);
         }
 

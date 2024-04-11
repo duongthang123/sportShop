@@ -88,8 +88,8 @@ class ProductController extends Controller
     {
         $result = $this->productService->destroyProduct($id);
         if($result) {
+            toastr()->success('Xóa sản phẩm thành công');
             return response()->json([
-                'error' => false,
                 'message' => 'Xóa sản phẩm thành công'
             ]);
         }

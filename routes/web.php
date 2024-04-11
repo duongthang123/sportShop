@@ -67,3 +67,13 @@ Route::group(['prefix' => 'products', 'middleware' => ['auth']], function () {
 Route::group(['prefix' => 'productDetails', 'middleware' => ['auth']], function () {
     Route::DELETE('/{productDetail}', [\App\Http\Controllers\Admin\ProductDetailController::class, 'destroy'])->name('productDetails.destroy');
 });
+
+
+Route::group(['prefix' => 'coupons', 'middleware' => ['auth']], function () {
+    Route::get('/', [\App\Http\Controllers\Admin\CouponController::class, 'index'])->name('coupons.index');
+    Route::get('/create', [\App\Http\Controllers\Admin\CouponController::class, 'create'])->name('coupons.create');
+    Route::get('/{coupon}/edit', [\App\Http\Controllers\Admin\CouponController::class, 'edit'])->name('coupons.edit');
+    Route::post('/store', [\App\Http\Controllers\Admin\CouponController::class, 'store'])->name('coupons.store');
+    Route::put('/{coupon}', [\App\Http\Controllers\Admin\CouponController::class, 'update'])->name('coupons.update');
+    Route::DELETE('/{coupon}', [\App\Http\Controllers\Admin\CouponController::class, 'destroy']);
+});

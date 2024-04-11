@@ -127,6 +127,29 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item {{request()->routeIs('products.*') ? 'menu-open' : ''}}">
+                <a href="{{route('coupons.index')}}" class="nav-link {{ request()->routeIs('coupons.*') ? 'active' : ''}}">
+                    <i class="nav-icon fas fa-gift"></i>
+                    <p>
+                        Mã giảm giá
+                        <i class="right fas fa-angle-left"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('coupons.index') }}" class="nav-link {{ request()->routeIs('coupons.index') ? 'active' : ''}}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Danh sách</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('coupons.create')}}" class="nav-link {{ request()->routeIs('coupons.create') ? 'active' : ''}}">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Thêm mới</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </nav>
     <!-- /.sidebar-menu -->
