@@ -84,9 +84,9 @@ class UserController extends Controller
     {
         $result = $this->userService->deleteUser($id);
         if($result) {
+            toastr()->success('Xóa người dùng thành công');
             return response()->json([
                 'error' => false,
-                'message' => 'Delete user success'
             ]);
         }
 

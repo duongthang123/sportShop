@@ -79,9 +79,9 @@ class CategoryController extends Controller
     {
         $result = $this->categoryService->destroyCategory($id);
         if ($result) {
+            toastr()->success('Xóa danh mục thành công');
             return response()->json([
                 'error' => false,
-                'message' => 'Xóa danh mục thành công!'
             ]);
         }
         return response()->json([

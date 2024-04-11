@@ -67,3 +67,6 @@ Route::group(['prefix' => 'products', 'middleware' => ['auth']], function () {
 Route::group(['prefix' => 'productDetails', 'middleware' => ['auth']], function () {
     Route::DELETE('/{productDetail}', [\App\Http\Controllers\Admin\ProductDetailController::class, 'destroy'])->name('productDetails.destroy');
 });
+
+
+Route::resource('coupons', \App\Http\Controllers\Admin\CouponController::class);
