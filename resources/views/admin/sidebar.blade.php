@@ -162,14 +162,6 @@
                     </form>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{route('login')}}" class="nav-link">
-                    <i class="nav-icon fas fa-sign-out-alt"></i>
-                    <p>
-                        Login
-                    </p>
-                </a>
-            </li>
         </ul>
     </nav>
     <!-- /.sidebar-menu -->

@@ -69,11 +69,9 @@ Route::middleware('checkRoleUser:super-admin,admin,employee,manager')->group(fun
         Route::DELETE('/{product}', [\App\Http\Controllers\Admin\ProductController::class, 'destroy']);
     });
 
-
     Route::group(['prefix' => 'productDetails', 'middleware' => ['auth']], function () {
         Route::DELETE('/{productDetail}', [\App\Http\Controllers\Admin\ProductDetailController::class, 'destroy'])->name('productDetails.destroy');
     });
-
 
     Route::group(['prefix' => 'coupons', 'middleware' => ['auth']], function () {
         Route::get('/', [\App\Http\Controllers\Admin\CouponController::class, 'index'])->name('coupons.index');
