@@ -5,7 +5,7 @@
             <img src="https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-            <a href="#" class="d-block">Alexander Pierce</a>
+            <a href="#" class="d-block">{{\Illuminate\Support\Facades\Auth::user()->name}}</a>
         </div>
     </div>
 
@@ -149,6 +149,26 @@
                         </a>
                     </li>
                 </ul>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('logout')}}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" class="nav-link">
+                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                    <p>
+                        Logout
+                    </p>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{route('login')}}" class="nav-link">
+                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                    <p>
+                        Login
+                    </p>
+                </a>
             </li>
         </ul>
     </nav>
