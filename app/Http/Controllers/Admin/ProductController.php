@@ -7,6 +7,7 @@ use App\Http\Requests\Products\CreateProductRequest;
 use App\Http\Services\Admin\CategoryService;
 use App\Http\Services\Admin\ProductService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
