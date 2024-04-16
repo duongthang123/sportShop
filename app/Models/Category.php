@@ -14,4 +14,9 @@ class Category extends Model
         'active',
         'parent_id'
     ];
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
 }

@@ -1,7 +1,7 @@
 <nav class="header__menu mobile-menu">
     <ul>
-        <li class="active"><a href="{{ route('home') }}">Trang chủ</a></li>
-        <li><a href="./shop.html">Cửa hàng</a></li>
+        <li class="{{ request()->routeIs('home') ? 'active' : ''}}"><a href="{{ route('home') }}">Trang chủ</a></li>
+        <li class="{{ request()->routeIs('shop') ? 'active' : ''}}"><a href="{{route('shop')}}" >Cửa hàng</a></li>
         <li><a href="#">Pages</a>
             <ul class="dropdown">
                 <li><a href="./about.html">About Us</a></li>
