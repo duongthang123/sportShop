@@ -20,9 +20,9 @@
                             <div class="product__item__pic set-bg" data-setbg="{{ $product->image_path }}" >
                                 <span class="label">New</span>
                                 <ul class="product__hover">
-                                    <li><a href="#"><img src="{{asset('client/img/icon/heart.png')}}" alt=""></a></li>
-                                    <li><a href="#"><img src="{{asset('client/img/icon/compare.png')}}" alt=""> <span>Compare</span></a></li>
-                                    <li><a href="#"><img src="{{asset('client/img/icon/search.png')}}" alt=""></a></li>
+                                    <li><a href="#"><img style="width: 36px" src="{{asset('client/img/icon/add.png')}}" alt=""> <span style="color: #fff">Thêm giỏ hàng</span></a>
+                                    </li>
+                                    <li><a href="#"><img src="{{asset('client/img/icon/search.png')}}" alt=""><span style="color: #fff">Xem chi tiết</span></a></li>
                                 </ul>
                             </div>
                             <div class="product__item__text">
@@ -57,9 +57,9 @@
                                 <div class="product__item__pic set-bg" data-setbg="{{$product->image_path}}" style="background-image: url(&quot;img/product/product-2.jpg&quot;);">
                                     <span class="label">Sale</span>
                                     <ul class="product__hover">
-                                        <li><a href="#"><img src="{{asset('client/img/icon/heart.png')}}" alt=""></a></li>
-                                        <li><a href="#"><img src="{{asset('client/img/icon/compare.png')}}" alt=""> <span>Compare</span></a></li>
-                                        <li><a href="#"><img src="{{asset('client/img/icon/search.png')}}" alt=""></a></li>
+                                        <li><a href="#"><img style="width: 36px" src="{{asset('client/img/icon/add.png')}}" alt=""> <span style="color: #fff">Thêm giỏ hàng</span></a>
+                                        </li>
+                                        <li><a href="#"><img src="{{asset('client/img/icon/search.png')}}" alt=""><span style="color: #fff">Xem chi tiết</span></a></li>
                                     </ul>
                                 </div>
                                 <div class="product__item__text">

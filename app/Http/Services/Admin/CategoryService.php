@@ -50,4 +50,10 @@ class CategoryService
     {
         return $this->categoryRepository->destroyCategory($id);
     }
+
+    public function getAllCategory()
+    {
+        return $this->categoryRepository->getAllCategory();
+    }
+
 }

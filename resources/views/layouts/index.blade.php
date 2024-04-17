@@ -5,7 +5,7 @@
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Male-Fashion | Template</title>
+    <title>Sport Shop</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
@@ -22,7 +22,11 @@
     <link rel="stylesheet" href="{{asset('client/css/owl.carousel.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('client/css/slicknav.min.css')}}" type="text/css">
     <link rel="stylesheet" href="{{asset('client/css/style.css')}}" type="text/css">
-
+    <style>
+        .active-cate {
+            color: #000 !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -105,5 +109,9 @@
 @yield('content')
 <!-- Footer Section Begin -->
 @include('layouts.footer')
+
+@yield('script')
+<script src="{{asset('client/js/product.js')}}"></script>
+
 </body>
 </html>

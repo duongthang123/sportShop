@@ -26,4 +26,52 @@ class ProductRepository
             ->where('sale', '>', 1)
             ->limit($limit)->get();
     }
+
+    public function getAll()
+    {
+        return $this->product::select('id', 'name', 'price', 'sale')
+            ->where('active', 1)->orderByDesc('id')->paginate(12);
+    }
+
+    public function getProductAsc()
+    {
+        return $this->product::select('id', 'name', 'price', 'sale')
+            ->where('active', 1)->orderBy('price')->paginate(12);
+    }
+
+    public function getProductDesc()
+    {
+        return $this->product::select('id', 'name', 'price', 'sale')
+            ->where('active', 1)->orderByDesc('price')->paginate(12);
+    }
+    public function getProductByCategoryId($id)
+    {
+        return $this->product::whereHas('categories', fn($q) => $q->where('category_id', $id))->paginate(12);
+    }
+
+    public function getProductAscByCategoryId($categoryId)
+    {
+        return $this->product::whereHas('categories', fn($q) => $q->where('category_id', $categoryId))->orderBy('price')->paginate(12);
+    }
+
+    public function getProductDescByCategoryId($categoryId)
+    {
+        return $this->product::whereHas('categories', fn($q) => $q->where('category_id', $categoryId))->orderByDesc('price')->paginate(12);
+    }
+
+    public function filterProductByPrice($minPrice, $maxPrice)
+    {
+        return $this->product::whereBetween('price', [$minPrice, $maxPrice])->paginate(12);
+    }
+
+    public function filterProductByPriceAndCategoryId($minPrice, $maxPrice, $categoryId)
+    {
+        return $this->product::whereHas('categories', fn($q) => $q->where('category_id', $categoryId))->whereBetween('price', [$minPrice, $maxPrice])->paginate(12);
+    }
+
+    public function searchProduct($request)
+    {
+        return $this->product::search($request)->latest()->paginate(12);
+    }
+
 }

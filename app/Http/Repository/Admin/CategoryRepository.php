@@ -44,4 +44,11 @@ class CategoryRepository
     {
         return $this->category::where('id', $id)->delete();
     }
+
+    public function getAllCategory()
+    {
+        return $this->category::where('active', 1)->get();
+    }
+
+
 }
