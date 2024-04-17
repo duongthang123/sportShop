@@ -32,25 +32,64 @@ class ProductService
     {
         if($request->has('price')) {
             $option = $request->price;
-            switch ($option) {
-                case 'asc':
-                    $products = $this->productRepository->getProductAsc();
-                    break;
-                case 'desc':
-                    $products = $this->productRepository->getAll();
-                default:
-                    $products = $this->productRepository->getAll();
-                    break;
+
+            if($request->has('category_id')) {
+                $categoryId = $request->category_id;
+                switch ($option) {
+                    case 'asc':
+                        $products = $this->productRepository->getProductAscByCategoryId($categoryId);
+                        break;
+                    case 'desc':
+                        $products = $this->productRepository->getProductDescByCategoryId($categoryId);
+                        break;
+                    default:
+                        $products = $this->productRepository->getProductDescByCategoryId($categoryId);
+                        break;
+                }
+            } else {
+                switch ($option) {
+                    case 'asc':
+                        $products = $this->productRepository->getProductAsc();
+                        break;
+                    case 'desc':
+                        $products = $this->productRepository->getProductDesc();
+                        break;
+                    default:
+                        $products = $this->productRepository->getProductDesc();
+                        break;
+                }
             }
+
         } else {
             $products = $this->productRepository->getAll();
         }
         return $products;
     }
 
+    public function getProductFilter($request)
+    {
+        $priceRange = $request->input('price_range');
+        $priceRangeArray = explode('-', $priceRange);
+        $minPrice = $priceRangeArray[0];
+        $maxPrice = $priceRangeArray[1];
+
+        if($request->has('category_id')) {
+            $products = $this->productRepository->filterProductByPriceAndCategoryId($minPrice, $maxPrice, $request->category_id);
+        } else {
+            $products = $this->productRepository->filterProductByPrice($minPrice, $maxPrice);
+        }
+
+        return $products;
+    }
+
     public function getProductByCategoryId($id)
     {
         return $this->productRepository->getProductByCategoryId($id);
+    }
+
+    public function searchProduct($request)
+    {
+        return $this->productRepository->searchProduct($request);
     }
 
 }

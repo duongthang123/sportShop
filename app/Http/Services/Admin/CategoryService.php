@@ -56,8 +56,4 @@ class CategoryService
         return $this->categoryRepository->getAllCategory();
     }
 
-    public function getProductByCategoryId($id)
-    {
-        return $this->categoryRepository->getProductByCategoryId($id);
-    }
 }

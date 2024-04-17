@@ -21,7 +21,9 @@ use App\Http\Controllers\Auth\VerificationController;
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index'])->name('shop');
 Route::get('/shop/sort', [\App\Http\Controllers\ShopController::class, 'sort'])->name('shop.sort');
+Route::get('/shop/filter-product', [\App\Http\Controllers\ShopController::class, 'filterProduct'])->name('shop.filterProduct');
 Route::get('/shop/{category_id}/category', [\App\Http\Controllers\ShopController::class, 'show'])->name('shop.show');
+Route::get('/shop/search', [\App\Http\Controllers\ShopController::class, 'search'])->name('shop.search');
 
 Auth::routes();
 

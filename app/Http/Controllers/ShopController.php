@@ -29,26 +29,27 @@ class ShopController extends Controller
 
     public function sort(Request $request)
     {
-        $categories = $this->categoryService->getAllCategory();
         $products = $this->productService->GetProductSort($request);
 
         $view = view('layouts.productResponse', compact('products'))->render();
         return response()->json(['html' => $view]);
     }
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+
+    public function filterProduct(Request $request)
     {
-        //
+        $products = $this->productService->getProductFilter($request);
+
+        $view = view('layouts.productResponse', compact('products'))->render();
+        return response()->json(['html' => $view]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function search(Request $request)
     {
-        //
+        $categories = $this->categoryService->getAllCategory();
+
+        $products = $this->productService->searchProduct($request);
+        return view('shop', compact('categories', 'products'));
+
     }
 
     /**
@@ -58,7 +59,6 @@ class ShopController extends Controller
     {
         $categories = $this->categoryService->getAllCategory();
         $products = $this->productService->getProductByCategoryId($id);
-//        dd($products);
 
         return view('shop', [
             'categories' => $categories,
@@ -66,27 +66,4 @@ class ShopController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

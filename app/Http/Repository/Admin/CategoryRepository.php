@@ -50,8 +50,5 @@ class CategoryRepository
         return $this->category::where('active', 1)->get();
     }
 
-    public function getProductByCategoryId($id)
-    {
-        return $this->category::with('products')->find($id)->products()->paginate(12);
-    }
+
 }

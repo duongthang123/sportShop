@@ -48,4 +48,20 @@ class Product extends Model
 
         return asset('uploads/default.png');
     }
+
+    public function scopeSearch($query)
+    {
+        $key = request()->key;
+        $category = request()->category;
+
+        return $query->when($key, function ($query, $input) {
+            return $query->where('name', 'like', "%{$input}%");
+        })->when($category, function ($query, $categoryId) {
+            return $query->whereHas('categories', function ($query) use ($categoryId) {
+                $query->where('categories.id', $categoryId);
+            });
+        });
+    }
+
+
 }

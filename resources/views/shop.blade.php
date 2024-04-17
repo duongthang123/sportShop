@@ -23,8 +23,8 @@
                 <div class="col-lg-3">
                     <div class="shop__sidebar">
                         <div class="shop__sidebar__search">
-                            <form action="#">
-                                <input type="text" placeholder="Tìm kiếm...">
+                            <form action="{{ route('shop.search') }}">
+                                <input id="keySearch" type="text" name="key" value="{{isset($_GET['key']) ? $_GET['key'] : ''}}" style="color: #000;" placeholder="Tìm kiếm...">
                                 <button type="submit"><span class="icon_search"></span></button>
                             </form>
                         </div>
@@ -54,48 +54,11 @@
                                         <div class="card-body">
                                             <div class="shop__sidebar__price">
                                                 <ul>
-                                                    <li><a href="#">$0.00 - $50.00</a></li>
-                                                    <li><a href="#">$50.00 - $100.00</a></li>
-                                                    <li><a href="#">$100.00 - $150.00</a></li>
-                                                    <li><a href="#">$150.00 - $200.00</a></li>
-                                                    <li><a href="#">$200.00 - $250.00</a></li>
-                                                    <li><a href="#">250.00+</a></li>
+                                                    <li><a class="filter-by-price" data-price-range="0-200000" href="#">0 - 200.000</a></li>
+                                                    <li><a class="filter-by-price" data-price-range="200000-1000000" href="#">200.000 - 1.000.000</a></li>
+                                                    <li><a class="filter-by-price" data-price-range="1000000-5000000" href="#">1.000.000 - 5.000.000</a></li>
+                                                    <li><a class="filter-by-price" data-price-range="5000000-9999999999" href="#">+ 5.000.000</a></li>
                                                 </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-heading">
-                                        <a data-toggle="collapse" data-target="#collapseFour">Size</a>
-                                    </div>
-                                    <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
-                                        <div class="card-body">
-                                            <div class="shop__sidebar__size">
-                                                <label for="xs">xs
-                                                    <input type="radio" id="xs">
-                                                </label>
-                                                <label for="sm">s
-                                                    <input type="radio" id="sm">
-                                                </label>
-                                                <label for="md">m
-                                                    <input type="radio" id="md">
-                                                </label>
-                                                <label for="xl">xl
-                                                    <input type="radio" id="xl">
-                                                </label>
-                                                <label for="2xl">2xl
-                                                    <input type="radio" id="2xl">
-                                                </label>
-                                                <label for="xxl">xxl
-                                                    <input type="radio" id="xxl">
-                                                </label>
-                                                <label for="3xl">3xl
-                                                    <input type="radio" id="3xl">
-                                                </label>
-                                                <label for="4xl">4xl
-                                                    <input type="radio" id="4xl">
-                                                </label>
                                             </div>
                                         </div>
                                     </div>
@@ -109,14 +72,14 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="shop__product__option__left">
-                                    <p>Có {{count($products) }} sản phẩm</p>
+                                    <p>Có tất cả {{count($products) }} sản phẩm</p>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="shop__product__option__right">
                                     <p>Sắp xếp:</p>
                                     <select id="sort-select" style="display: none;">
-                                        <option value="">Default</option>
+                                        <option value="">Mặc định</option>
                                         <option value="asc">Giá thấp đến cao</option>
                                         <option value="desc">Giá cao đến thấp</option>
                                     </select>
@@ -134,10 +97,9 @@
                                             <span style="background: #000; color: #fff" class="label">Sale</span>
                                         @endif
                                         <ul class="product__hover">
-                                            <li><a href="#"><img src="{{asset('client/img/icon/heart.png')}}" alt=""></a></li>
-                                            <li><a href="#"><img src="{{asset('client/img/icon/compare.png')}}" alt=""> <span>Compare</span></a>
+                                            <li><a href="#"><img style="width: 36px" src="{{asset('client/img/icon/add.png')}}" alt=""> <span style="color: #fff">Thêm giỏ hàng</span></a>
                                             </li>
-                                            <li><a href="#"><img src="{{asset('client/img/icon/search.png')}}" alt=""></a></li>
+                                            <li><a href="#"><img src="{{asset('client/img/icon/search.png')}}" alt=""><span style="color: #fff">Xem chi tiết</span></a></li>
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
@@ -177,11 +139,20 @@
     </section>
 @endsection
 
-{{--@section('script')--}}
-{{--    <script>--}}
-{{--        document.getElementById('sort-select').addEventListener('change', function () {--}}
-{{--            console.log(1);--}}
-{{--        })--}}
-{{--    </script>--}}
+@section('script')
+    <script>
+        let debounceTimer;
+        $(document).ready(function () {
+            // Gọi hàm searchProduct khi giá trị trong ô tìm kiếm hoặc select thay đổi
+            $('#keySearch, #selectSearch').on('input', function () {
+                // Xóa timeout cũ nếu có
+                clearTimeout(debounceTimer);
 
-{{--@endsection--}}
+                // Gọi hàm searchProduct sau 500 milliseconds
+                debounceTimer = setTimeout(searchProduct, 5000);
+            });
+        });
+
+    </script>
+
+@endsection

@@ -1,3 +1,6 @@
+@if($products->isEmpty())
+    <span>Không có sản phẩm nào với giá đã chọn !</span>
+@endif
 @foreach($products as $product)
     <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="product__item">
@@ -5,12 +8,11 @@
                 @if($product->sale > 0)
                     <span style="background: #000; color: #fff" class="label">Sale</span>
                 @endif
-                <ul class="product__hover">
-                    <li><a href="#"><img src="{{asset('client/img/icon/heart.png')}}" alt=""></a></li>
-                    <li><a href="#"><img src="{{asset('client/img/icon/compare.png')}}" alt=""> <span>Compare</span></a>
-                    </li>
-                    <li><a href="#"><img src="{{asset('client/img/icon/search.png')}}" alt=""></a></li>
-                </ul>
+                    <ul class="product__hover">
+                        <li><a href="#"><img style="width: 36px" src="{{asset('client/img/icon/add.png')}}" alt=""> <span style="color: #fff">Thêm giỏ hàng</span></a>
+                        </li>
+                        <li><a href="#"><img src="{{asset('client/img/icon/search.png')}}" alt=""><span style="color: #fff">Xem chi tiết</span></a></li>
+                    </ul>
             </div>
             <div class="product__item__text">
                 <h6>{{$product->name}}</h6>
