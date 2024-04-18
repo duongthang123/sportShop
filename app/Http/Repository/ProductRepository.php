@@ -46,7 +46,7 @@ class ProductRepository
     }
     public function getProductByCategoryId($id)
     {
-        return $this->product::whereHas('categories', fn($q) => $q->where('category_id', $id))->paginate(12);
+        return $this->product::whereHas('categories', fn($q) => $q->where('category_id', $id))->where('active', 1)->paginate(12);
     }
 
     public function getProductAscByCategoryId($categoryId)
@@ -74,4 +74,17 @@ class ProductRepository
         return $this->product::search($request)->latest()->paginate(12);
     }
 
+    public function getProductById($id)
+    {
+        return $this->product::with('details')->where([
+            'id' => $id,
+            'active' => 1
+        ])->first();
+    }
+
+    public function getProductRelateByCategoryId($id)
+    {
+        return $this->product::whereHas('categories', fn($q) => $q->where('category_id', $id))
+            ->where('active', 1)->paginate(4);
+    }
 }

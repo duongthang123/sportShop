@@ -24,7 +24,7 @@ Route::get('/shop/sort', [\App\Http\Controllers\ShopController::class, 'sort'])-
 Route::get('/shop/filter-product', [\App\Http\Controllers\ShopController::class, 'filterProduct'])->name('shop.filterProduct');
 Route::get('/shop/{category_id}/category', [\App\Http\Controllers\ShopController::class, 'show'])->name('shop.show');
 Route::get('/shop/search', [\App\Http\Controllers\ShopController::class, 'search'])->name('shop.search');
-
+Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, 'index'])->name('product');
 Auth::routes();
 
 Route::middleware('checkRoleUser:super-admin,admin,employee,manager')->group(function () {
