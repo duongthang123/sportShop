@@ -92,4 +92,14 @@ class ProductService
         return $this->productRepository->searchProduct($request);
     }
 
+    public function getProductById($id)
+    {
+        return $this->productRepository->getProductById($id);
+    }
+
+    public function getProductRelateByCategoryId($id)
+    {
+        return $this->productRepository->getProductRelateByCategoryId($id);
+    }
+
 }

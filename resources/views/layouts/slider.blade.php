@@ -13,7 +13,7 @@
                                         <h6>Mùa hè rực lửa</h6>
                                         <h2>Rực lửa mùa Euro - 2024</h2>
                                         <p>Khám phá - Thỏa sức cháy với cùng trang phục các đội tuyển quốc gia.</p>
-                                        <a href="#" class="primary-btn">Mua ngay<span class="arrow_right"></span></a>
+                                        <a href="{{route('shop')}}" class="primary-btn">Mua ngay<span class="arrow_right"></span></a>
                                         <div class="hero__social">
                                             <a href="#"><i class="fa fa-facebook"></i></a>
                                             <a href="#"><i class="fa fa-twitter"></i></a>
@@ -36,7 +36,7 @@
                                         <h6>Ngoại Hạng Anh - 2024</h6>
                                         <h2>Mùa giải - 2023/2024</h2>
                                         <p>Khám phá - Thỏa sức cháy với cùng trang phục các câu lạc bộ.</p>
-                                        <a href="#" class="primary-btn">Mua ngay<span class="arrow_right"></span></a>
+                                        <a href="{{route('shop')}}" class="primary-btn">Mua ngay<span class="arrow_right"></span></a>
                                         <div class="hero__social">
                                             <a href="#"><i class="fa fa-facebook"></i></a>
                                             <a href="#"><i class="fa fa-twitter"></i></a>
@@ -59,7 +59,7 @@
                                         <h6>Bộ sưu tập mùa hè</h6>
                                         <h2>Rực lửa mùa Euro - 2024</h2>
                                         <p>Khám phá - Thỏa sức cháy với cùng trang phục các đội tuyển quốc gia.</p>
-                                        <a href="#" class="primary-btn">Mua ngay<span class="arrow_right"></span></a>
+                                        <a href="{{route('shop')}}" class="primary-btn">Mua ngay<span class="arrow_right"></span></a>
                                         <div class="hero__social">
                                             <a href="#"><i class="fa fa-facebook"></i></a>
                                             <a href="#"><i class="fa fa-twitter"></i></a>
