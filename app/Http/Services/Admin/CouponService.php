@@ -4,6 +4,7 @@ namespace App\Http\Services\Admin;
 
 use App\Http\Repository\Admin\CouponRepository;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class CouponService
 {
@@ -73,5 +74,10 @@ class CouponService
     public function getCouponById($id)
     {
         return $this->couponRepository->getCouponById($id);
+    }
+
+    public function firtWithExperyDate($name, $userId)
+    {
+        return $this->couponRepository->firtWithExperyDate($name, $userId);
     }
 }

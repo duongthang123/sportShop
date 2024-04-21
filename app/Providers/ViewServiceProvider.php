@@ -2,18 +2,19 @@
 
 namespace App\Providers;
 
-use Illuminate\Pagination\Paginator;
+use App\View\Composers\CartComposer;
+use Illuminate\Support\Facades;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
+use Illuminate\View\View;
 
-class AppServiceProvider extends ServiceProvider
+class ViewServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
      */
     public function register(): void
     {
-        //
+        // ...
     }
 
     /**
@@ -21,7 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Paginator::useBootstrapFive();
-        View::share('key', 'value');
+        Facades\View::composer('layouts.index', CartComposer::class);
     }
 }
