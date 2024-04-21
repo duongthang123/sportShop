@@ -96,9 +96,8 @@
             <div class="col-lg-3 col-md-3">
                 <div class="header__nav__option">
                     <a href="#" class="search-switch"><img src="{{asset('client/img/icon/search.png') }}" alt=""></a>
-                    <a href="#"><img src="{{asset('client/img/icon/heart.png') }}" alt=""></a>
-                    <a href="#"><img src="{{asset('client/img/icon/cart.png') }}" alt=""> <span>0</span></a>
-                    <div class="price">$0.00</div>
+                    <a href="{{route('cart')}}"><img src="{{asset('client/img/icon/cart.png') }}" alt=""></a>
+                    <div class="price">{{$countProductInCart}}</div>
                 </div>
             </div>
         </div>

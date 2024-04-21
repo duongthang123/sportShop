@@ -18,6 +18,7 @@ use App\Http\Controllers\Auth\VerificationController;
 |
 */
 
+// Client
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index'])->name('shop');
 Route::get('/shop/sort', [\App\Http\Controllers\ShopController::class, 'sort'])->name('shop.sort');
@@ -25,8 +26,21 @@ Route::get('/shop/filter-product', [\App\Http\Controllers\ShopController::class,
 Route::get('/shop/{category_id}/category', [\App\Http\Controllers\ShopController::class, 'show'])->name('shop.show');
 Route::get('/shop/search', [\App\Http\Controllers\ShopController::class, 'search'])->name('shop.search');
 Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, 'index'])->name('product');
+Route::post('/product', [\App\Http\Controllers\ProductController::class, 'store'])->name('product.store')->middleware('auth');
+
+
+Route::group(['prefix' => 'cart', 'middleware' => 'auth'], function () {
+    Route::get('/', [\App\Http\Controllers\CartController::class, 'index'])->name('cart');
+    Route::post('/', [\App\Http\Controllers\CartController::class, 'store'])->name('cart.store');
+    Route::post('/update-cart', [\App\Http\Controllers\CartController::class, 'updateQuantity'])->name('cart.update');
+    Route::post('/apply-coupon', [\App\Http\Controllers\CartController::class, 'applyCoupon'])->name('cart.apply-coupon');
+    Route::DELETE('/delete-cart/{product_id}', [\App\Http\Controllers\CartController::class, 'deleteProductInCart']);
+});
+
+// Authenticated
 Auth::routes();
 
+// Admin
 Route::middleware('checkRoleUser:super-admin,admin,employee,manager')->group(function () {
     // Các route khác
     Route::get('/dashboard', function () {

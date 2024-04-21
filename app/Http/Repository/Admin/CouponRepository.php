@@ -29,4 +29,9 @@ class CouponRepository
         return $this->coupon::where('id', $id)->first();
     }
 
+    public function firtWithExperyDate($name, $userId)
+    {
+        return $this->coupon->firtWithExperyDate($name, $userId);
+    }
+
 }

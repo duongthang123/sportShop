@@ -3,6 +3,7 @@
 namespace App\Http\Repository;
 
 use App\Models\Product;
+use App\Models\ProductDetails;
 
 class ProductRepository
 {
@@ -86,5 +87,14 @@ class ProductRepository
     {
         return $this->product::whereHas('categories', fn($q) => $q->where('category_id', $id))
             ->where('active', 1)->paginate(4);
+    }
+
+    public function getProductByIdAndSizeColor($dataCreate)
+    {
+        return ProductDetails::select('quantity')->where([
+            'product_id' => $dataCreate['product_id'],
+            'size' => $dataCreate['size'],
+            'color' => $dataCreate['color'],
+        ])->first();
     }
 }

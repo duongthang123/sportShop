@@ -35,76 +35,82 @@
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-9">
-                        <div class="product__details__text text-left">
-                            <h4>{{ $product->name }}</h4>
-                            <h3 style="color: red">{{$product->sale > 0 ? number_format($product->sale) : number_format($product->price)}}
-                                <span>{{ $product->sale > 0 ? number_format($product->price) : ''}}</span></h3>
-                            <div class="product__details__option" style="margin-top: 40px">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <select name="size" class="form-control"  id="size">
-                                                <option>Chọn Size</option>
-                                                @php $sizes = [] @endphp
-                                                @foreach($product['details'] as $item)
-                                                    @if(!in_array($item->size, $sizes))
-                                                        <@php $sizes[] = $item->size  @endphp
-                                                        <option value="{{$item->size}}">{{ $item->size }}</option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
+                        <form action="{{route('product.store')}}" method="POST">
+                            @csrf
+                            <div class="product__details__text text-left">
+                                <h4>{{ $product->name }}</h4>
+                                <h3 style="color: red">{{$product->sale > 0 ? number_format($product->sale) : number_format($product->price)}}
+                                    <span>{{ $product->sale > 0 ? number_format($product->price) : ''}}</span></h3>
+                                <input type="hidden" name="product_id" value="{{$product->id}}">
+                                <input type="hidden" name="price" value="{{$product->sale > 0 ? $product->sale : $product->price}}">
 
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12" style="margin-top: 12px">
-                                        <div class="form-group">
-                                            <label>Chọn màu sắc:</label>
-                                            <div class="color-options">
-                                                @foreach($product['details'] as $item)
-                                                    <label class="color-option p-2" data-qty="{{$item->quantity}}" data-size="{{$item->size}}">
-                                                        <input type="radio" name="color" value="{{$item->color}}">
-                                                        <input type="color" disabled value="{{$item->color}}">
-                                                    </label>
-                                                @endforeach
+                                <div class="product__details__option" style="margin-top: 40px">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <select name="size" class="form-control"  id="size">
+                                                    <option value="">Chọn Size</option>
+                                                    @php $sizes = [] @endphp
+                                                    @foreach($product['details'] as $item)
+                                                        @if(!in_array($item->size, $sizes))
+                                                            <@php $sizes[] = $item->size  @endphp
+                                                            <option value="{{$item->size}}">{{ $item->size }}</option>
+                                                        @endif
+                                                    @endforeach
+                                                </select>
                                             </div>
                                         </div>
+
                                     </div>
+                                    <div class="row">
+                                        <div class="col-md-12" style="margin-top: 12px">
+                                            <div class="form-group">
+                                                <label>Chọn màu sắc:</label>
+                                                <div class="color-options">
+                                                    @foreach($product['details'] as $item)
+                                                            <label class="color-option p-2" data-qty="{{$item->quantity}}" data-size="{{$item->size}}">
+                                                                <input type="radio" name="color" value="{{$item->color}}">
+                                                                <input type="color" disabled value="{{$item->color}}">
+                                                            </label>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        </div>
 
-                                </div>
-                            </div>
-
-
-                            <div class="product__details__cart__option">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <span class="fa fa-angle-up dec qtybtn"></span>
-                                        <input type="text" value="1">
-                                        <span class="fa fa-angle-down inc qtybtn"></span>
                                     </div>
                                 </div>
-                                <a href="#" class="primary-btn" style="border-radius: 3px">Mua ngay</a>
-                            </div>
-                            <div class="product__details__last__option">
-                                <ul>
-                                    <li><span>Mã sản phẩm:</span>{{$product->id}}</li>
-                                    <li><span>Danh mục:</span>
-                                        @foreach ($categories as $category)
-                                        {{$category->name}},
-                                        @endforeach
-                                    </li>
-                                    <li><span >Số lượng:</span>
-                                        <span style="color: black; font-weight: 700" id="product_qty">
+
+
+                                <div class="product__details__cart__option">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <span class="fa fa-angle-up dec qtybtn"></span>
+                                            <input type="text" name="quantity" value="1">
+                                            <span class="fa fa-angle-down inc qtybtn"></span>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="primary-btn" style="border-radius: 3px; outline: none; border: none">Mua ngay</button>
+                                </div>
+                                <div class="product__details__last__option">
+                                    <ul>
+                                        <li><span>Mã sản phẩm:</span>{{$product->id}}</li>
+                                        <li><span>Danh mục:</span>
+                                            @foreach ($categories as $category)
+                                                {{$category->name}},
+                                            @endforeach
+                                        </li>
+                                        <li><span >Số lượng:</span>
+                                            <span style="color: black; font-weight: 700" id="product_qty">
                                             @php
                                                 $sum = $product->details->sum('quantity')
                                             @endphp
-                                            {{  $sum > 0 ? $sum : 'Đã hết hàng'}}
+                                                {{  $sum > 0 ? $sum : 'Đã hết hàng'}}
                                         </span>
-                                    </li>
-                                </ul>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
+                        </form>
 
                     </div>
                 </div>

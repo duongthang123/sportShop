@@ -97,14 +97,18 @@
                                             <span style="background: #000; color: #fff" class="label">Sale</span>
                                         @endif
                                         <ul class="product__hover">
-                                            <li><a href="#"><img style="width: 36px" src="{{asset('client/img/icon/add.png')}}" alt=""> <span style="color: #fff">Thêm giỏ hàng</span></a>
+                                            <li>
+                                                <a href="#">
+                                                    <img style="width: 36px" src="{{asset('client/img/icon/add.png')}}" alt="">
+                                                    <span style="color: #fff">Thêm giỏ hàng</span>
+                                                </a>
                                             </li>
                                             <li><a href="{{ route('product', $product->id) }}"><img src="{{asset('client/img/icon/search.png')}}" alt=""><span style="color: #fff">Xem chi tiết</span></a></li>
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
                                         <h6>{{$product->name}}</h6>
-                                        <a href="#" class="add-cart">+ Thêm giỏ hàng</a>
+                                        <a href="{{route('product', $product->id)}}" class="add-cart">Mua ngay</a>
                                         <div class="rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
