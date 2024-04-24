@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('status');
             $table->double('total');
-            $table->double('ship');
+            $table->string('status_payment');
             $table->string('customer_name');
             $table->string('customer_email');
             $table->string('customer_phone');
             $table->string('customer_address');
-            $table->text('note');
+            $table->text('note')->nullable();
             $table->string('payment')->nullable();
             $table->foreignIdFor(\App\Models\User::class)->constrained()->cascadeOnDelete();
             $table->timestamps();

@@ -37,6 +37,16 @@ Route::group(['prefix' => 'cart', 'middleware' => 'auth'], function () {
     Route::DELETE('/delete-cart/{product_id}', [\App\Http\Controllers\CartController::class, 'deleteProductInCart']);
 });
 
+Route::get('/checkout', [\App\Http\Controllers\CartController::class, 'checkout'])->name('checkout')->middleware(['auth', 'user_can_checkout_cart']);
+
+Route::group(['prefix' => 'order', 'middleware' => 'auth'], function () {
+    Route::get('/list-order', [\App\Http\Controllers\OrderController::class, 'index'])->name('order.list-order');
+    Route::post('/cancel-order/{order_id}', [\App\Http\Controllers\OrderController::class, 'cancelOrder'])->name('order.cancel-order');
+    Route::post('/store', [\App\Http\Controllers\OrderController::class, 'store'])->name('order.store')->middleware('user_can_checkout_cart');
+    Route::post('/payment_vnpay', [\App\Http\Controllers\OrderController::class, 'payment_vnpay'])->name('order.payment_vnpay')->middleware('user_can_checkout_cart');
+    Route::post('/payment_momo', [\App\Http\Controllers\OrderController::class, 'payment_momo'])->name('order.payment_momo')->middleware('user_can_checkout_cart');
+});
+
 // Authenticated
 Auth::routes();
 
