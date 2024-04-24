@@ -157,7 +157,7 @@
                                         @elseif(isset($_GET['vnp_TransactionStatus']))
                                             vnpay
                                         @else
-                                        chưa thanh toán
+                                        Chưa thanh toán
                                    @endif
                                     " name="status_payment">
                                 <button type="submit" class="site-btn">ĐẶT HÀNG</button>

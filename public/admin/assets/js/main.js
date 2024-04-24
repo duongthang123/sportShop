@@ -26,5 +26,33 @@ function removeRow(url)
     }
 }
 
+$(document).ready(function () {
+    $('.select_status').change(function () {
+        var url = $(this).data("action");
+        var orderId = $(this).data("order-id");
+        var status = $(this).val();
+
+
+        if(confirm('Bạn có chắc chắn muốn cập nhật trạng thái đơn hàng!')) {
+            $.ajax({
+                type: 'PUT',
+                url: url,
+                data: {
+                    id: orderId,
+                    status: status
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (result) {
+                    if(result.error === false) {
+                        location.reload();
+                    }
+                }
+            })
+        }
+    })
+});
+
 
 

@@ -110,4 +110,10 @@ Route::middleware('checkRoleUser:super-admin,admin,employee,manager')->group(fun
         Route::DELETE('/{coupon}', [\App\Http\Controllers\Admin\CouponController::class, 'destroy']);
     });
 
+    Route::group(['prefix' => 'orders', 'middleware' => ['auth']], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
+        Route::get('/{order}', [\App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
+        Route::put('/{order}', [\App\Http\Controllers\Admin\OrderController::class, 'updateStatus'])->name('orders.update_status');
+    });
+
 });
