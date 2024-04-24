@@ -11,7 +11,7 @@
                 <li><a href="./blog-details.html">Blog Details</a></li>
             </ul>
         </li>
-        <li><a href="./blog.html">Tin tức</a></li>
+        <li><a href="{{route('news')}}">Tin tức</a></li>
         <li><a href="./contact.html">Liên hệ</a></li>
     </ul>
 </nav>

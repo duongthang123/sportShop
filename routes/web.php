@@ -27,7 +27,7 @@ Route::get('/shop/{category_id}/category', [\App\Http\Controllers\ShopController
 Route::get('/shop/search', [\App\Http\Controllers\ShopController::class, 'search'])->name('shop.search');
 Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, 'index'])->name('product');
 Route::post('/product', [\App\Http\Controllers\ProductController::class, 'store'])->name('product.store')->middleware('auth');
-
+Route::get('/news', [\App\Http\Controllers\NewsFeedController::class, 'index'])->name('news');
 
 Route::group(['prefix' => 'cart', 'middleware' => 'auth'], function () {
     Route::get('/', [\App\Http\Controllers\CartController::class, 'index'])->name('cart');
