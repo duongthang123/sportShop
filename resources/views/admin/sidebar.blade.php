@@ -150,6 +150,14 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item {{request()->routeIs('orders.*') ? 'menu-open' : ''}}">
+                <a href="{{route('orders.index')}}" class="nav-link {{ request()->routeIs('orders.*') ? 'active' : ''}}">
+                    <i class="nav-icon fas fa-shopping-cart"></i>
+                    <p>
+                        Quản lý đơn hàng
+                    </p>
+                </a>
+            </li>
             <li class="nav-item">
                 <a href="{{route('logout')}}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" class="nav-link">
