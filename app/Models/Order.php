@@ -12,12 +12,18 @@ class Order extends Model
     protected $fillable = [
         'status',
         'total',
-        'ship',
+        'status_payment',
         'customer_name',
         'customer_email',
         'customer_phone',
         'customer_address',
         'note',
-        'payment'
+        'payment',
+        'user_id'
     ];
+
+    public function products()
+    {
+        return $this->hasMany(ProductOrder::class);
+    }
 }

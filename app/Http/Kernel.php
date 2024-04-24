@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\CheckRoleUser;
+use App\Http\Middleware\UserCanCheckoutCartMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -66,5 +67,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'checkRoleUser' => \App\Http\Middleware\CheckRoleUser::class,
+        'user_can_checkout_cart' => UserCanCheckoutCartMiddleware::class,
     ];
 }

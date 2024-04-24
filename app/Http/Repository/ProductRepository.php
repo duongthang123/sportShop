@@ -97,4 +97,13 @@ class ProductRepository
             'color' => $dataCreate['color'],
         ])->first();
     }
+
+    public function getProductBy($dataCreate)
+    {
+        return ProductDetails::where([
+            'product_id' => $dataCreate['product_id'],
+            'size' => $dataCreate['product_size'],
+            'color' => $dataCreate['product_color'],
+        ])->first();
+    }
 }

@@ -102,4 +102,13 @@ class ProductService
         return $this->productRepository->getProductRelateByCategoryId($id);
     }
 
+    public function updateQuantityProduct($orderProduct)
+    {
+        $product = $this->productRepository->getProductBy($orderProduct);
+        $newQuantity = $product->quantity - $orderProduct['product_quantity'];
+        $product->quantity = $newQuantity;
+        $product->save();
+        return true;
+    }
+
 }

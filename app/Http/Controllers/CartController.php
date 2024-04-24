@@ -84,4 +84,12 @@ class CartController extends Controller
 
         return redirect()->route('cart');
     }
+
+    public function checkout()
+    {
+        $userId = Auth::user()->id;
+        $carts = $this->cartService->firstOrCreateBy($userId)->load('products');
+
+        return view('checkout', compact('carts'));
+    }
 }

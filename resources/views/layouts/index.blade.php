@@ -43,9 +43,9 @@
     <div class="header__top">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-7">
+                <div class="col-lg-6 col-md-7"  style="display: flex; align-items: center">
                     <div class="header__top__left">
-                        <p>Tạo tài khoản để nhận được những khuyến mãi đặc biệt!</p>
+                            <p>Tạo tài khoản để nhận được những khuyến mãi đặc biệt!</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-5">
@@ -63,14 +63,29 @@
 
                             @else
                                 <div style="text-transform: inherit; color: #fff">
-                                    Xin chào: {{ \Illuminate\Support\Facades\Auth::user()->name  }}
-
-                                    <a  style="text-transform: inherit" class="ml-2" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        | Logout
-                                    </a>
-
+                                    <nav class="navbar navbar-expand-lg">
+                                        <div class="container-fluid">
+                                            <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                                                <ul class="navbar-nav">
+                                                    <li class="nav-item dropdown">
+                                                        <a style="text-transform: inherit" class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                            Xin chào: {{ \Illuminate\Support\Facades\Auth::user()->name  }}
+                                                        </a>
+                                                        <ul style="background-color: black; " class="dropdown-menu-lg-start dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
+                                                            <li><a style="text-transform: initial" class="dropdown-item" href="#">Thông tin cá nhân</a></li>
+                                                            <li><a style="text-transform: inherit" class="dropdown-item" href="{{route('order.list-order')}}">Đơn hàng của tôi</a></li>
+                                                            <li>
+                                                                <a  style="text-transform: inherit" class="dropdown-item" href="{{ route('logout') }}"
+                                                                    onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Đăng xuất
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </nav>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
@@ -111,6 +126,7 @@
 
 @yield('script')
 <script src="{{asset('client/js/product.js')}}"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 </html>

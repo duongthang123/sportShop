@@ -116,23 +116,35 @@
                         <ul>
 
                             <li>Tổng phụ <span>
-                                    @if(\Illuminate\Support\Facades\Session::get('coupon_code'))
-                                        @php $totalSumWithCoupon = $totalSum * \Illuminate\Support\Facades\Session::get('coupon_value') / 100;
-                                            $totalSum -= $totalSumWithCoupon;
-                                        @endphp
+                                    {{number_format($totalSum)}}
 
-                                        {{number_format($totalSum)}}
-                                    @else
-
-                                        {{ number_format($totalSum) }}
-                                    @endif
                                 </span></li>
                             <li>Phí ship <span>
-                                    @php $ship = 30000 @endphp
+                                    @php $ship = 30000;
+                                            $totalSum += $ship;
+                                    @endphp
                                     {{number_format($ship)}}</span></li>
-                            <li>Tổng tiền <span>{{ number_format($totalSum + $ship) }}</span></li>
+                            <li>Giảm giá<span>
+                                    @if(\Illuminate\Support\Facades\Session::get('coupon_code'))
+                                        @php $couponPrice = $totalSum * \Illuminate\Support\Facades\Session::get('coupon_value') / 100;
+                                        @endphp
+
+                                        {{number_format($couponPrice)}}
+                                    @else
+
+                                        {{ 0 }}
+                                    @endif
+                                </span></li>
+                            <li>Tổng tiền <span>
+                                    @if(\Illuminate\Support\Facades\Session::get('coupon_code'))
+                                        @php $totalSum -= $couponPrice @endphp
+                                        {{number_format($totalSum)}}
+                                    @else
+                                        {{number_format($totalSum)}}
+                                    @endif
+                                </span></li>
                         </ul>
-                        <a href="#" class="primary-btn">Thanh Toán</a>
+                        <a href="{{route('checkout')}}" class="primary-btn">Thanh Toán</a>
                     </div>
                 </div>
             </div>
