@@ -25,4 +25,9 @@ class OrderRepository
     {
         return $this->order::where('id', $orderId)->first();
     }
+
+    public function getOrderByStatus($statusOrder)
+    {
+        return $this->order::where('status', $statusOrder)->latest('id')->paginate(10);
+    }
 }

@@ -39,4 +39,10 @@ class OrderService
         return $this->orderRepository->getOrderById($id);
     }
 
+    public function getOrderByStatus($request)
+    {
+        $data = $request->all();
+        return $this->orderRepository->getOrderByStatus($data['status']);
+    }
+
 }

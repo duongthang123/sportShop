@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\Admin\OrderService;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -74,6 +75,18 @@ class OrderController extends Controller
         ]);
     }
 
+    public function orderPdf($id)
+    {
+        $order = $this->orderService->getOrderById($id)->load('products');
+        $pdf = PDF\Pdf::loadView('admin.orders.pdfFile', compact('order'));;
+        return $pdf->stream('admin.orders.pdfFile.pdf');
+    }
+
+    public function orderFilter(Request $request)
+    {
+        $orders = $this->orderService->getOrderByStatus($request);
+        return view('admin.orders.index', compact('orders'));
+    }
     /**
      * Remove the specified resource from storage.
      */

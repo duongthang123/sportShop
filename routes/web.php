@@ -114,6 +114,8 @@ Route::middleware('checkRoleUser:super-admin,admin,employee,manager')->group(fun
         Route::get('/', [\App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
         Route::get('/{order}', [\App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
         Route::put('/{order}', [\App\Http\Controllers\Admin\OrderController::class, 'updateStatus'])->name('orders.update_status');
+        Route::get('/order-pdf/{order}', [\App\Http\Controllers\Admin\OrderController::class, 'orderPdf'])->name('orders.order_pdf');
+        Route::post('/order-filter', [\App\Http\Controllers\Admin\OrderController::class, 'orderFilter'])->name('orders.order-filter');
     });
 
 });

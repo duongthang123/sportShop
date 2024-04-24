@@ -5,6 +5,23 @@
     <div class="card-body">
         <h1>Danh sách các đơn hàng</h1>
         <div class="card-body table-responsive p-0">
+            <div class="row">
+                <div class="col-12 mb-4 mt-2">
+                    <form action="{{route('orders.order-filter')}}" method="POST" class="d-flex justify-content-start">
+                        @csrf
+                        <div class="form-group">
+                            <select name="status" class="form-control"
+                                    style="cursor: pointer; max-width: 240px">
+                                <option selected>Lọc đơn hàng</option>
+                                @foreach(config('order.status') as $status)
+                                    <option value="{{$status}}">{{$status}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="max-height: 38px; margin-left: 4px">Lọc</button>
+                    </form>
+                </div>
+            </div>
             <table class="table table-hover">
                 <thead>
                     <tr>

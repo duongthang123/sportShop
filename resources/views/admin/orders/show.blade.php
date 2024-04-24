@@ -92,7 +92,7 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col-6">
-                    <a href="#" class="btn btn-primary">Xuất Hóa Đơn</a>
+                    <a href="{{route('orders.order_pdf', $order->id)}}" class="btn btn-primary">Xuất Hóa Đơn</a>
                 </div>
             </div>
         </div>
