@@ -28,4 +28,12 @@ class OrderRepository
         return $this->order->create($dataCreate);
     }
 
+    public function getStatusOrderById($orderId, $userId)
+    {
+        return $this->order::select('status')
+            ->where('id', $orderId)
+            ->where('user_id', $userId)
+            ->first();
+    }
+
 }

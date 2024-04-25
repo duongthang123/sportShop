@@ -77,4 +77,9 @@ class OrderService
     {
         return $this->orderProductService->createOrderProduct($cart, $orderId);
     }
+
+    public function getStatusOrderById($orderId, $userId)
+    {
+        return $this->orderRepository->getStatusOrderById($orderId, $userId);
+    }
 }
