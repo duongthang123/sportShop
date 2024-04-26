@@ -29,6 +29,11 @@ Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, 'in
 Route::post('/product', [\App\Http\Controllers\ProductController::class, 'store'])->name('product.store')->middleware('auth');
 Route::get('/news', [\App\Http\Controllers\NewsFeedController::class, 'index'])->name('news');
 
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
+    Route::get('/{user}', [\App\Http\Controllers\UserController::class, 'show'])->name('user.show');
+    Route::put('/{user}', [\App\Http\Controllers\UserController::class, 'update'])->name('user.update');
+});
+
 //Botman
 Route::match(['get', 'post'], '/botman', [\App\Http\Controllers\BotManController::class, 'handle']);
 
