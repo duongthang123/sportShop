@@ -28,6 +28,7 @@ Route::get('/shop/search', [\App\Http\Controllers\ShopController::class, 'search
 Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, 'index'])->name('product');
 Route::post('/product', [\App\Http\Controllers\ProductController::class, 'store'])->name('product.store')->middleware('auth');
 Route::get('/news', [\App\Http\Controllers\NewsFeedController::class, 'index'])->name('news');
+Route::get('/coupon', [\App\Http\Controllers\NewsFeedController::class, 'coupon'])->name('coupon');
 
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('/{user}', [\App\Http\Controllers\UserController::class, 'show'])->name('user.show');
