@@ -37,7 +37,59 @@
 
 <!-- Offcanvas Menu Begin -->
 <div class="offcanvas-menu-overlay"></div>
+<div class="offcanvas-menu-wrapper">
+    <div class="offcanvas__option">
+        <div class="offcanvas__links">
+            @guest
+                @if(\Illuminate\Support\Facades\Route::has('login'))
+                    <a href="{{route('login')}}" style="text-transform: inherit">
+                        Đăng nhập
+                    </a>
+                @endif
+                @if(\Illuminate\Support\Facades\Route::has('register'))
+                    <a href="{{route('register')}}" style="text-transform: inherit">Đăng ký</a>
+                @endif
 
+            @else
+            <p>Xin chào: {{ \Illuminate\Support\Facades\Auth::user()->name }}</p>
+        </div>
+        <div class="offcanvas__top__hover">
+        </div>
+    </div>
+    <div class="offcanvas__nav__option">
+        <a href="#" class="search-switch"><img src="{{asset('client/img/icon/search.png')}}" alt=""></a>
+        <a href="{{route('cart')}}"><img src="{{asset('client/img/icon/cart.png')}}" alt=""> </a>
+        <div class="price">{{$countProductInCart}}</div>
+    </div>
+    <div id="mobile-menu-wrap">
+        <div class="slicknav_menu">
+            <a href="#" aria-haspopup="true" role="button" tabindex="0" class="slicknav_btn slicknav_collapsed" style="outline: none;">
+                <span class="slicknav_menutxt">MENU</span>
+                <span class="slicknav_icon">
+                    <span class="slicknav_icon-bar">
+
+                    </span><span class="slicknav_icon-bar">
+
+                    </span><span class="slicknav_icon-bar"></span></span></a><nav class="slicknav_nav slicknav_hidden" aria-hidden="true" role="menu" style="display: none;">
+                <ul>
+
+                    <li>
+                        <a  style="text-transform: inherit; font-family: 'Nunito Sans', sans-serif;letter-spacing: 0px" class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Đăng xuất
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
+            </nav></div></div>
+    <div class="offcanvas__text">
+        <p>Nhập mã MK01 để được giảm giá 10% đơn hàng</p>
+    </div>
+    @endguest
+
+</div>
 <!-- Header Section Begin -->
 <header class="header">
     <div class="header__top">
@@ -72,7 +124,7 @@
                                                             Xin chào: {{ \Illuminate\Support\Facades\Auth::user()->name  }}
                                                         </a>
                                                         <ul style="background-color: black; " class="dropdown-menu-lg-start dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                                                            <li><a style="text-transform: initial;font-family: 'Nunito Sans', sans-serif;letter-spacing: 0px" class="dropdown-item" href="#">Thông tin cá nhân</a></li>
+                                                            <li><a style="text-transform: initial;font-family: 'Nunito Sans', sans-serif;letter-spacing: 0px" class="dropdown-item" href="{{route('user.show', \Illuminate\Support\Facades\Auth::user()->id)}}">Thông tin cá nhân</a></li>
                                                             <li><a style="text-transform: inherit; font-family: 'Nunito Sans', sans-serif;letter-spacing: 0px" class="dropdown-item" href="{{route('order.list-order')}}">Đơn hàng của tôi</a></li>
                                                             <li>
                                                                 <a  style="text-transform: inherit; font-family: 'Nunito Sans', sans-serif;letter-spacing: 0px" class="dropdown-item" href="{{ route('logout') }}"
