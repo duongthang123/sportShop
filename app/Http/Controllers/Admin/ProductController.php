@@ -92,7 +92,6 @@ class ProductController extends Controller
             toastr()->success('Xóa sản phẩm thành công');
             return response()->json([
                 'error' => false,
-                'message' => 'Xóa sản phẩm thành công'
             ]);
         }
 

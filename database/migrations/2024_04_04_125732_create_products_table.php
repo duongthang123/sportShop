@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->double('sale')->default(0);
             $table->double('price');
+            $table->integer('quantity_sell')->nullable();
             $table->integer('active');
             $table->timestamps();
         });

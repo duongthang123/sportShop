@@ -23,6 +23,8 @@ class OrderProductService
     public function createOrderProduct($cart, $orderId)
     {
         foreach ($cart['products'] as $product) {
+            $productId = $product['product_id'];
+            $this->productService->updateQuantitySellProductById($productId, $product['product_quantity']);
             $orderProduct = new ProductOrder([
                 'product_id' => $product['product_id'],
                 'product_size' => $product['product_size'],

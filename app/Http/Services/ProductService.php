@@ -111,4 +111,9 @@ class ProductService
         return true;
     }
 
+    public function updateQuantitySellProductById($productId, $productQuantity)
+    {
+        return $this->productRepository->updateQuantitySellProductById($productId, $productQuantity);
+    }
+
 }

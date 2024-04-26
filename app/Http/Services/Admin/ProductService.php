@@ -110,7 +110,6 @@ class ProductService
             }
             $product->images()->delete();
             $product->delete();
-            toastr()->success('Xóa sản phẩm thành công');
             return true;
         } catch (\Exception $e) {
             toastr()->error('Có lỗi khi xóa');
