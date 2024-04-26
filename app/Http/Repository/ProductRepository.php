@@ -106,4 +106,9 @@ class ProductRepository
             'color' => $dataCreate['product_color'],
         ])->first();
     }
+
+    public function updateQuantitySellProductById($productId, $productQuantity)
+    {
+        return $this->product::where('id', $productId)->update(['quantity_sell' => $productQuantity]);
+    }
 }
