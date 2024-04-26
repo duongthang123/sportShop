@@ -97,7 +97,7 @@
             <div class="row">
                 <div class="col-lg-6 col-md-7"  style="display: flex; align-items: center">
                     <div class="header__top__left">
-                            <p>Tạo tài khoản để nhận được những khuyến mãi đặc biệt!</p>
+                        <p>Đăng nhập để sử dụng những <a style="color: red" href="{{ route('coupon') }}">khuyến mại</a> đặc biệt!</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-5">
@@ -126,6 +126,7 @@
                                                         <ul style="background-color: black; " class="dropdown-menu-lg-start dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
                                                             <li><a style="text-transform: initial;font-family: 'Nunito Sans', sans-serif;letter-spacing: 0px" class="dropdown-item" href="{{route('user.show', \Illuminate\Support\Facades\Auth::user()->id)}}">Thông tin cá nhân</a></li>
                                                             <li><a style="text-transform: inherit; font-family: 'Nunito Sans', sans-serif;letter-spacing: 0px" class="dropdown-item" href="{{route('order.list-order')}}">Đơn hàng của tôi</a></li>
+                                                            <li><a style="text-transform: inherit; font-family: 'Nunito Sans', sans-serif;letter-spacing: 0px" class="dropdown-item" href="{{route('coupon')}}">Mã khuyến mại</a></li>
                                                             <li>
                                                                 <a  style="text-transform: inherit; font-family: 'Nunito Sans', sans-serif;letter-spacing: 0px" class="dropdown-item" href="{{ route('logout') }}"
                                                                     onclick="event.preventDefault();
