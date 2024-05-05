@@ -52,6 +52,8 @@
 
             @else
             <p>Xin chào: {{ \Illuminate\Support\Facades\Auth::user()->name }}</p>
+            @endguest
+
         </div>
         <div class="offcanvas__top__hover">
         </div>
@@ -87,7 +89,6 @@
     <div class="offcanvas__text">
         <p>Nhập mã MK01 để được giảm giá 10% đơn hàng</p>
     </div>
-    @endguest
 
 </div>
 <!-- Header Section Begin -->
