@@ -50,4 +50,9 @@ class ProductRepository
         return $this->product->deleteImage($currentImage);
     }
 
+    public function search($request)
+    {
+        return $this->product::searchProduct($request)->latest('id')->paginate(10);
+    }
+
 }

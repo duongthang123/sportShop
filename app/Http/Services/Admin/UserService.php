@@ -67,4 +67,14 @@ class UserService
         $user->images()->delete();
         return $this->userRepository->deleteUser($id);
     }
+
+    public function numberUser()
+    {
+        return $this->userRepository->numberUser();
+    }
+
+    public function search($request)
+    {
+        return $this->userRepository->search($request);
+    }
 }

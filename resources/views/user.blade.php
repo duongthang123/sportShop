@@ -109,6 +109,7 @@
                     </div>
 
                     <div>
+                        <a href="{{route('home')}}" class="btn btn-danger">Quay lại</a>
                         <button type="submit" class="btn btn-primary">Cập nhật</button>
                     </div>
                 </form>

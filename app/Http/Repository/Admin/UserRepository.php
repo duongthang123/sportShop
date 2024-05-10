@@ -47,4 +47,14 @@ class UserRepository
     {
         return $this->user::where('id', $id)->delete();
     }
+
+    public function numberUser()
+    {
+        return $this->user::count('id');
+    }
+
+    public function search($request)
+    {
+        return $this->user::search($request)->latest('id')->paginate(10);
+    }
 }

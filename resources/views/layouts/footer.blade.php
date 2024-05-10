@@ -5,39 +5,43 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__about">
                     <div class="footer__logo">
-                        <a href="#"><img src="{{asset('client/img/footer-logo.png')}}" alt=""></a>
+                        <a href="#"><img src="{{asset('client/img/logodt.jpeg')}}" alt=""></a>
                     </div>
-                    <p>The customer is at the heart of our unique business model, which includes design.</p>
+                    <p>Đăng nhập ngay để mua sắm được những sản phẩm với ưu đãi tốt nhất!
+                        <a href="{{route('coupon')}}" style="color: red">Khuyến mại</a>
+                    </p>
+                    <p>Địa chỉ: Lương Điền, Cẩm Giàng, Hải Dương
+                    </p>
                     <a href="#"><img src="{{asset('client/img/payment.png')}}" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
                 <div class="footer__widget">
-                    <h6>Shopping</h6>
+                    <h6>Cửa hàng</h6>
                     <ul>
-                        <li><a href="#">Clothing Store</a></li>
-                        <li><a href="#">Trending Shoes</a></li>
-                        <li><a href="#">Accessories</a></li>
-                        <li><a href="#">Sale</a></li>
+                        <li><a href="{{route('home')}}">Trang chủ</a></li>
+                        <li><a href="{{route('shop')}}">Cửa hàng</a></li>
+                        <li><a href="{{route('cart')}}">Giỏ hàng</a></li>
+                        <li><a href="{{route('order.list-order')}}">Đơn hàng</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-6">
                 <div class="footer__widget">
-                    <h6>Shopping</h6>
+                    <h6>Liên hệ</h6>
                     <ul>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">Payment Methods</a></li>
-                        <li><a href="#">Delivary</a></li>
-                        <li><a href="#">Return &amp; Exchanges</a></li>
+                        <li><a href="{{route('news')}}">Tin tức</a></li>
+                        <li><a href="{{route('coupon')}}">Khuyễn mại</a></li>
+                        <li><a href="#">Địa chỉ: Lương Điền, Cẩm Giàng, Hải Dương</a ></li>
+                        <li><a href="#">SĐT: 0912812671</a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
                 <div class="footer__widget">
-                    <h6>NewLetter</h6>
+                    <h6>Đánh Giá</h6>
                     <div class="footer__newslatter">
-                        <p>Be the first to know about new arrivals, look books, sales &amp; promos!</p>
+                        <p>Liên hệ với chúng tôi qua email!</p>
                         <form action="#">
                             <input type="text" placeholder="Your email">
                             <button type="submit"><span class="icon_mail_alt"></span></button>
@@ -54,10 +58,9 @@
                         <script>
                             document.write(new Date().getFullYear());
                         </script>
-                        20242020
-                        All rights reserved | This template is made with <i class="fa fa-heart-o"
-                                                                            aria-hidden="true"></i> by <a
-                            href="https://colorlib.com" target="_blank">Colorlib</a>
+                        Hãy ủng hộ DTSport Shop nha  <i class="fa fa-heart-o"
+                                                                            aria-hidden="true"></i> <a
+                            href="https://colorlib.com" target="_blank"></a>
                     </p>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </div>
@@ -71,8 +74,9 @@
 <div class="search-model">
     <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="search-close-switch">+</div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Search here.....">
+        <form action="{{ route('shop.search') }}" class="search-model-form">
+            @csrf
+            <input type="text" name="key" id="search-input" placeholder="Tim kiếm.....">
         </form>
     </div>
 </div>

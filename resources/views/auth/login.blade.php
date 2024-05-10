@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="login-box" style="max-width: 400px">
             <div class="login-logo">
-                <a><b>SportShop</b></a>
+                <a><b>DTSportShop</b></a>
             </div>
             <!-- /.login-logo -->
             <div class="card">
