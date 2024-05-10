@@ -45,4 +45,23 @@ class OrderService
         return $this->orderRepository->getOrderByStatus($data['status']);
     }
 
+    public function searchOrder($request)
+    {
+        return $this->orderRepository->searchOrder($request);
+    }
+
+    public function getTotalRevenue()
+    {
+        return $this->orderRepository->getTotalRevenue();
+    }
+
+    public function numberOrderSuccess()
+    {
+        return $this->orderRepository->numberOrderSuccess();
+    }
+
+    public function numberOrderDestroy()
+    {
+        return $this->orderRepository->numberOrderDestroy();
+    }
 }

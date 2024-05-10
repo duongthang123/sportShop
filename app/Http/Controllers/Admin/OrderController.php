@@ -87,6 +87,12 @@ class OrderController extends Controller
         $orders = $this->orderService->getOrderByStatus($request);
         return view('admin.orders.index', compact('orders'));
     }
+
+    public function search(Request $request)
+    {
+        $orders = $this->orderService->searchOrder($request);
+        return view('admin.orders.index', compact('orders'));
+    }
     /**
      * Remove the specified resource from storage.
      */

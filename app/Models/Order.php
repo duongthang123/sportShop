@@ -26,4 +26,16 @@ class Order extends Model
     {
         return $this->hasMany(ProductOrder::class);
     }
+
+    public function scopeSearch($query)
+    {
+        $key = request()->key;
+
+        return $query->when($key, function ($query, $input) {
+            return $query->where(function($query) use ($input) {
+                $query->where('id', '=', $input)
+                    ->orWhere('customer_email', 'like', "%{$input}%");
+            });
+        });
+    }
 }

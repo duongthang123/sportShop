@@ -158,4 +158,9 @@ class ProductService
             }
         }
     }
+
+    public function search($request)
+    {
+        return $this->productRepository->search($request);
+    }
 }

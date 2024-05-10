@@ -17,7 +17,7 @@
                 @foreach($productNews as $product)
                     <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals" style="">
                         <div class="product__item">
-                            <div class="product__item__pic set-bg" data-setbg="{{$product->image_path}}" style="background-image: url(&quot;img/product/product-2.jpg&quot;);">
+                            <div class="product__item__pic set-bg" data-setbg="{{$product->image_path}}" style="background-image: url(&quot;{{$product->image_path}}&quot;);">
                                 @if($product->sale > 0)
                                     <span style="background: #000; color: #fff" class="label">Sale</span>
                                 @endif
@@ -64,7 +64,7 @@
                 @foreach($productSales as $product)
                         <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales" style="">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="{{$product->image_path}}" style="background-image: url(&quot;img/product/product-2.jpg&quot;);">
+                                <div class="product__item__pic set-bg" data-setbg="{{$product->image_path}}" style="background-image: url(&quot;<?php echo $product->image_path ?>&quot;);">
                                     @if($product->sale > 0)
                                         <span style="background: #000; color: #fff" class="label">Sale</span>
                                     @endif

@@ -65,4 +65,22 @@ class User extends Authenticatable
 
         return asset('uploads/default.png');
     }
+
+    public function messages()
+    {
+        return $this->belongsToMany(Message::class);
+    }
+
+    public function scopeSearch($query)
+    {
+        $key = request()->key;
+
+        return $query->when($key, function ($query, $input) {
+            return $query->where(function($query) use ($input) {
+                $query->where('id', '=', $input)
+                    ->orWhere('name', 'like', "%{$input}%")
+                    ->orWhere('email', 'like', "%{$input}%");
+            });
+        });
+    }
 }

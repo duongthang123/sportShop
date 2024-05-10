@@ -94,4 +94,10 @@ class UserController extends Controller
             'error' => true,
         ]);
     }
+
+    public function search(Request $request)
+    {
+        $users = $this->userService->search($request);
+        return view('admin.users.index', compact('users'));
+    }
 }

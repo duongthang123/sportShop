@@ -62,69 +62,79 @@ Auth::routes();
 // Admin
 Route::middleware('checkRoleUser:super-admin,admin,employee,manager')->group(function () {
     // Các route khác
-    Route::get('/dashboard', function () {
-        return view('admin.home');
-    })->name('dashboard')->middleware('auth');
+    Route::get('/dashboard', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('dashboard')->middleware('auth');
+    Route::get('/dashboard/revenue', [\App\Http\Controllers\Admin\HomeController::class, 'revenue'])->name('dashboard.revenue')->middleware('auth');
 
     Route::group(['prefix' => 'roles', 'middleware' => ['auth']], function () {
-        Route::get('/', [\App\Http\Controllers\Admin\RoleController::class, 'index'])->name('roles.index');
-        Route::get('/create', [\App\Http\Controllers\Admin\RoleController::class, 'create'])->name('roles.create');
-        Route::get('/{role}', [\App\Http\Controllers\Admin\RoleController::class, 'show'])->name('roles.show');
-        Route::get('/{role}/edit', [\App\Http\Controllers\Admin\RoleController::class, 'edit'])->name('roles.edit');
-        Route::post('/store', [\App\Http\Controllers\Admin\RoleController::class, 'store'])->name('roles.store');
-        Route::put('/{role}', [\App\Http\Controllers\Admin\RoleController::class, 'update'])->name('roles.update');
-        Route::DELETE('/{role}', [\App\Http\Controllers\Admin\RoleController::class, 'destroy']);
+        Route::get('/', [\App\Http\Controllers\Admin\RoleController::class, 'index'])->name('roles.index')->middleware('role:super-admin');
+        Route::get('/create', [\App\Http\Controllers\Admin\RoleController::class, 'create'])->name('roles.create')->middleware('role:super-admin');
+        Route::get('/{role}', [\App\Http\Controllers\Admin\RoleController::class, 'show'])->name('roles.show')->middleware('role:super-admin');
+        Route::get('/{role}/edit', [\App\Http\Controllers\Admin\RoleController::class, 'edit'])->name('roles.edit')->middleware('role:super-admin');
+        Route::post('/store', [\App\Http\Controllers\Admin\RoleController::class, 'store'])->name('roles.store')->middleware('role:super-admin');
+        Route::put('/{role}', [\App\Http\Controllers\Admin\RoleController::class, 'update'])->name('roles.update')->middleware('role:super-admin');
+        Route::DELETE('/{role}', [\App\Http\Controllers\Admin\RoleController::class, 'destroy'])->middleware('role:super-admin');
     });
 
     Route::group(['prefix' => 'users', 'middleware' => ['auth']], function () {
-        Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index');
-        Route::get('/create', [\App\Http\Controllers\Admin\UserController::class, 'create'])->name('users.create');
-        Route::get('/{user}', [\App\Http\Controllers\Admin\UserController::class, 'show'])->name('users.show');
-        Route::get('/{user}/edit', [\App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit');
-        Route::post('/store', [\App\Http\Controllers\Admin\UserController::class, 'store'])->name('users.store');
-        Route::put('/{user}', [\App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
-        Route::DELETE('/{user}', [\App\Http\Controllers\Admin\UserController::class, 'destroy']);
+        Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users.index')->middleware('permission:show-user');
+        Route::get('/create', [\App\Http\Controllers\Admin\UserController::class, 'create'])->name('users.create')->middleware('permission:create-user');
+        Route::get('/{user}', [\App\Http\Controllers\Admin\UserController::class, 'show'])->name('users.show')->middleware('permission:show-user');
+        Route::get('/{user}/edit', [\App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit')->middleware('permission:update-user');
+        Route::post('/store', [\App\Http\Controllers\Admin\UserController::class, 'store'])->name('users.store')->middleware('permission:create-user');
+        Route::put('/{user}', [\App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update')->middleware('permission:update-user');
+        Route::DELETE('/{user}', [\App\Http\Controllers\Admin\UserController::class, 'destroy'])->middleware('permission:delete-user');
+        Route::post('/search', [\App\Http\Controllers\Admin\UserController::class, 'search'])->name('users.search')->middleware('permission:show-user');
+
     });
 
     Route::group(['prefix' => 'categories', 'middleware' => ['auth']], function () {
-        Route::get('/', [\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');
-        Route::get('/create', [\App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('categories.create');
-        Route::get('/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'show'])->name('categories.show');
-        Route::get('/{category}/edit', [\App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('categories.edit');
-        Route::post('/store', [\App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('categories.store');
-        Route::put('/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('categories.update');
-        Route::DELETE('/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy']);
+        Route::get('/', [\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index')->middleware('permission:show-category');
+        Route::get('/create', [\App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('categories.create')->middleware('permission:create-category');
+        Route::get('/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'show'])->name('categories.show')->middleware('permission:show-category');
+        Route::get('/{category}/edit', [\App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('categories.edit')->middleware('permission:update-category');
+        Route::post('/store', [\App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('categories.store')->middleware('permission:create-category');
+        Route::put('/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('categories.update')->middleware('permission:update-category');
+        Route::DELETE('/{category}', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->middleware('permission:delete-category');
     });
 
     Route::group(['prefix' => 'products', 'middleware' => ['auth']], function () {
-        Route::get('/', [\App\Http\Controllers\Admin\ProductController::class, 'index'])->name('products.index');
-        Route::get('/create', [\App\Http\Controllers\Admin\ProductController::class, 'create'])->name('products.create');
-        Route::get('/{product}', [\App\Http\Controllers\Admin\ProductController::class, 'show'])->name('products.show');
-        Route::get('/{product}/edit', [\App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('products.edit');
-        Route::post('/store', [\App\Http\Controllers\Admin\ProductController::class, 'store'])->name('products.store');
-        Route::put('/{product}', [\App\Http\Controllers\Admin\ProductController::class, 'update'])->name('products.update');
-        Route::DELETE('/{product}', [\App\Http\Controllers\Admin\ProductController::class, 'destroy']);
+        Route::get('/', [\App\Http\Controllers\Admin\ProductController::class, 'index'])->name('products.index')->middleware('permission:show-product');
+        Route::get('/create', [\App\Http\Controllers\Admin\ProductController::class, 'create'])->name('products.create')->middleware('permission:create-product');
+        Route::get('/{product}', [\App\Http\Controllers\Admin\ProductController::class, 'show'])->name('products.show')->middleware('permission:show-product');
+        Route::get('/{product}/edit', [\App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('products.edit')->middleware('permission:update-product');
+        Route::post('/store', [\App\Http\Controllers\Admin\ProductController::class, 'store'])->name('products.store')->middleware('permission:create-product');
+        Route::put('/{product}', [\App\Http\Controllers\Admin\ProductController::class, 'update'])->name('products.update')->middleware('permission:update-product');
+        Route::DELETE('/{product}', [\App\Http\Controllers\Admin\ProductController::class, 'destroy'])->middleware('permission:delete-product');
+        Route::post('/search', [\App\Http\Controllers\Admin\ProductController::class, 'search'])->name('products.search')->middleware('permission:show-product');
+
     });
 
     Route::group(['prefix' => 'productDetails', 'middleware' => ['auth']], function () {
-        Route::DELETE('/{productDetail}', [\App\Http\Controllers\Admin\ProductDetailController::class, 'destroy'])->name('productDetails.destroy');
+        Route::DELETE('/{productDetail}', [\App\Http\Controllers\Admin\ProductDetailController::class, 'destroy'])->name('productDetails.destroy')->middleware('permission:delete-product');
     });
 
     Route::group(['prefix' => 'coupons', 'middleware' => ['auth']], function () {
-        Route::get('/', [\App\Http\Controllers\Admin\CouponController::class, 'index'])->name('coupons.index');
-        Route::get('/create', [\App\Http\Controllers\Admin\CouponController::class, 'create'])->name('coupons.create');
-        Route::get('/{coupon}/edit', [\App\Http\Controllers\Admin\CouponController::class, 'edit'])->name('coupons.edit');
-        Route::post('/store', [\App\Http\Controllers\Admin\CouponController::class, 'store'])->name('coupons.store');
-        Route::put('/{coupon}', [\App\Http\Controllers\Admin\CouponController::class, 'update'])->name('coupons.update');
-        Route::DELETE('/{coupon}', [\App\Http\Controllers\Admin\CouponController::class, 'destroy']);
+        Route::get('/', [\App\Http\Controllers\Admin\CouponController::class, 'index'])->name('coupons.index')->middleware('permission:show-coupon');
+        Route::get('/create', [\App\Http\Controllers\Admin\CouponController::class, 'create'])->name('coupons.create')->middleware('permission:create-coupon');
+        Route::get('/{coupon}/edit', [\App\Http\Controllers\Admin\CouponController::class, 'edit'])->name('coupons.edit')->middleware('permission:update-coupon');
+        Route::post('/store', [\App\Http\Controllers\Admin\CouponController::class, 'store'])->name('coupons.store')->middleware('permission:create-coupon');
+        Route::put('/{coupon}', [\App\Http\Controllers\Admin\CouponController::class, 'update'])->name('coupons.update')->middleware('permission:update-coupon');
+        Route::DELETE('/{coupon}', [\App\Http\Controllers\Admin\CouponController::class, 'destroy'])->middleware('permission:delete-coupon');
     });
 
     Route::group(['prefix' => 'orders', 'middleware' => ['auth']], function () {
-        Route::get('/', [\App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index');
-        Route::get('/{order}', [\App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show');
+        Route::get('/', [\App\Http\Controllers\Admin\OrderController::class, 'index'])->name('orders.index')->middleware('permission:list-order');
+        Route::get('/{order}', [\App\Http\Controllers\Admin\OrderController::class, 'show'])->name('orders.show')->middleware('permission:show-order');
         Route::put('/{order}', [\App\Http\Controllers\Admin\OrderController::class, 'updateStatus'])->name('orders.update_status');
         Route::get('/order-pdf/{order}', [\App\Http\Controllers\Admin\OrderController::class, 'orderPdf'])->name('orders.order_pdf');
         Route::post('/order-filter', [\App\Http\Controllers\Admin\OrderController::class, 'orderFilter'])->name('orders.order-filter');
+        Route::post('/search', [\App\Http\Controllers\Admin\OrderController::class, 'search'])->name('orders.search');
+    });
+
+    Route::group(['prefix' => 'chats', 'middleware' => ['auth']], function () {
+        Route::get('/', [\App\Http\Controllers\Admin\ChatController::class, 'index'])->name('chats.index');
+        Route::post('/message', [\App\Http\Controllers\Admin\ChatController::class, 'messageReceived'])->name('chats.message');
+        Route::get('/message', [\App\Http\Controllers\Admin\ChatController::class, 'getMessage'])->name('chats.getMessage');
     });
 
 });

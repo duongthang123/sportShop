@@ -56,10 +56,24 @@ class Product extends Model
         $category = request()->category;
 
         return $query->when($key, function ($query, $input) {
-            return $query->where('name', 'like', "%{$input}%");
+            return $query->where('name', 'like', "%{$input}%")
+                ->orWhere('price', 'like', "%{$input}%")
+            ->orWhere('sale', 'like', "%{$input}%");
         })->when($category, function ($query, $categoryId) {
             return $query->whereHas('categories', function ($query) use ($categoryId) {
                 $query->where('categories.id', $categoryId);
+            });
+        });
+    }
+
+    public function scopeSearchProduct($query)
+    {
+        $key = request()->key;
+
+        return $query->when($key, function ($query, $input) {
+            return $query->where(function($query) use ($input) {
+                $query->where('id', '=', $input)
+                    ->orWhere('name', 'like', "%{$input}%");
             });
         });
     }

@@ -4,9 +4,23 @@
 @section('content')
     <div class="card-body">
         <h1>Sản phẩm</h1>
-        <div class="mb-2">
-            <a href="{{route('products.create')}}" class="btn btn-primary">Thêm mới</a>
+        <div class="row">
+            <div class="col-6 mb-4 mt-2">
+                <div class="mb-2">
+                    <a href="{{route('products.create')}}" class="btn btn-primary">Thêm mới</a>
+                </div>
+            </div>
+            <div class="col-6 mb-4 mt-2">
+                <form action="{{route('products.search')}}" method="POST" class="d-flex justify-content-start">
+                    @csrf
+                    <div class="form-group">
+                        <input type="text" name="key" class="form-control" placeholder="Tìm kiếm sản phẩm">
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="max-height: 38px; margin-left: 4px">Tìm kiếm</button>
+                </form>
+            </div>
         </div>
+
         <table class="table table-hover">
             <thead>
             <tr>

@@ -99,4 +99,10 @@ class ProductController extends Controller
             'error' => true,
         ]);
     }
+
+    public function search(Request $request)
+    {
+        $products = $this->productService->search($request);
+        return view('admin.products.index', compact('products'));
+    }
 }

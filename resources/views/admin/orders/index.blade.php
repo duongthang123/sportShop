@@ -6,7 +6,16 @@
         <h1>Danh sách các đơn hàng</h1>
         <div class="card-body table-responsive p-0">
             <div class="row">
-                <div class="col-12 mb-4 mt-2">
+                <div class="col-6 mb-4 mt-2">
+                    <form action="{{route('orders.search')}}" method="POST" class="d-flex justify-content-start">
+                        @csrf
+                        <div class="form-group">
+                            <input type="text" name="key" class="form-control" placeholder="Tìm kiếm đơn hàng">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="max-height: 38px; margin-left: 4px">Tìm kiếm</button>
+                    </form>
+                </div>
+                <div class="col-6 mb-4 mt-2">
                     <form action="{{route('orders.order-filter')}}" method="POST" class="d-flex justify-content-start">
                         @csrf
                         <div class="form-group">

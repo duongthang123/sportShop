@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckRoleIsUser;
 use App\Http\Middleware\CheckRoleUser;
 use App\Http\Middleware\UserCanCheckoutCartMiddleware;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -68,5 +69,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'checkRoleUser' => \App\Http\Middleware\CheckRoleUser::class,
         'user_can_checkout_cart' => UserCanCheckoutCartMiddleware::class,
+        'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
+        'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+        'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
     ];
 }

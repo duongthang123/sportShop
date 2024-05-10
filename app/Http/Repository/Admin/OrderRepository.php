@@ -30,4 +30,24 @@ class OrderRepository
     {
         return $this->order::where('status', $statusOrder)->latest('id')->paginate(10);
     }
+
+    public function searchOrder($request)
+    {
+        return $this->order::search($request)->latest('id')->paginate(10);
+    }
+
+    public function getTotalRevenue()
+    {
+        return $this->order::where('status', 'Hoàn thành')->sum('total');
+    }
+
+    public function numberOrderSuccess()
+    {
+        return $this->order::where('status', 'Hoàn thành')->count('id');
+    }
+
+    public function numberOrderDestroy()
+    {
+        return $this->order::where('status', 'Đã hủy')->count('id');
+    }
 }
