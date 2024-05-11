@@ -95,8 +95,8 @@ class OrderController extends Controller
         $orderInfo = "Thanh toán qua ATM MoMo";
         $amount = $data['total'];
         $orderId = time() . "";
-        $redirectUrl = "http://localhost:9999/checkout";
-        $ipnUrl = "http://localhost:9999/checkout";
+        $redirectUrl = "http://dtsportshop.wcbxodva9sj7by.flashvps.xyz/checkout";
+        $ipnUrl = "http://dtsportshop.wcbxodva9sj7by.flashvps.xyz/checkout";
         $extraData = "";
 
 
@@ -140,7 +140,7 @@ class OrderController extends Controller
 
         $code_cart = rand(00,99999);
         $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-        $vnp_Returnurl = "http://localhost:9999/checkout";
+        $vnp_Returnurl = "http://dtsportshop.wcbxodva9sj7by.flashvps.xyz/checkout";
         $vnp_TmnCode = "UVRGVD1X";//Mã website tại VNPAY
         $vnp_HashSecret = "FTKYSLPBGTHOKWXZXQIQBYAUPFRLUGLN"; //Chuỗi bí mật
 
