@@ -5,7 +5,7 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__about">
                     <div class="footer__logo">
-                        <a href="#"><img src="{{asset('client/img/logodt.jpeg')}}" alt=""></a>
+                        <a href="#"><img src="{{asset('client/img/logonewfoot.jpeg')}}" alt=""></a>
                     </div>
                     <p>Đăng nhập ngay để mua sắm được những sản phẩm với ưu đãi tốt nhất!
                         <a href="{{route('coupon')}}" style="color: red">Khuyến mại</a>

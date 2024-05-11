@@ -156,8 +156,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-md-3">
-                <div class="header__logo">
-                    <a href="{{route('home')}}"><img src="{{asset('client/img/logodt.jpeg')}}" alt=""></a>
+                <div class="header__logo" style="padding: 20px 0 !important;">
+                    <a href="{{route('home')}}"><img src="{{asset('client/img/logonewhead.jpeg')}}" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
