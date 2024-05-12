@@ -24,7 +24,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-6">
-                    <p style="margin: 0; padding-top: 8px; font-size: 30px"><b>SportShop</b></p>
+                    <p style="margin: 0; padding-top: 8px; font-size: 30px"><b>DTSportShop</b></p>
                     <p style="margin: 0;padding-top: 8px"><b>Địa chỉ:</b> số 32, Lương Xá, Lương Điền, Cẩm Giàng, Hải
                         Dương</p>
                     <p style="margin: 0; padding-top: 8px"><b>Số điện thoại:</b> 0961172512</p>

@@ -50,4 +50,40 @@ class OrderRepository
     {
         return $this->order::where('status', 'Đã hủy')->count('id');
     }
+
+    public function revenueDay($key)
+    {
+        $orders = $this->order->whereDate('created_at', $key)
+            ->get();
+
+        $totalOrders = $orders->count();
+        $totalMoney = $orders->where('status', 'Hoàn thành')->sum('total');
+        $successfulOrders = $orders->where('status', 'Hoàn thành')->count();
+        $cancelledOrders = $orders->where('status', 'Đã hủy')->count();
+
+        return [
+            'total_orders' => $totalOrders,
+            'total_money' => $totalMoney,
+            'successful_orders' => $successfulOrders,
+            'cancelled_orders' => $cancelledOrders
+        ];
+    }
+
+    public function revenueMonth($month, $year)
+    {
+        $orders = $this->order->whereMonth('created_at', $month)
+                            ->whereYear('created_at', $year)
+                            ->get();
+        $totalOrders = $orders->count();
+        $totalMoney = $orders->where('status', 'Hoàn thành')->sum('total');
+        $successfulOrders = $orders->where('status', 'Hoàn thành')->count();
+        $cancelledOrders = $orders->where('status', 'Đã hủy')->count();
+
+        return [
+            'total_orders' => $totalOrders,
+            'total_money' => $totalMoney,
+            'successful_orders' => $successfulOrders,
+            'cancelled_orders' => $cancelledOrders
+        ];
+    }
 }
