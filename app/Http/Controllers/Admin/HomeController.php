@@ -36,4 +36,27 @@ class HomeController extends Controller
     {
         return view('admin.dashboard.revenue');
     }
+
+    public function revenueDay(Request $request)
+    {
+        $key = $request->input('key');
+        $results = $this->orderService->revenueDay($key);
+        return view('admin.dashboard.revenue', [
+            'title' => 'Thống kê theo ngày: ' . $key,
+            'date' => $key,
+            'results' => $results
+        ]);
+    }
+
+    public function revenueMonth(Request $request)
+    {
+        $month = $request->input('month');
+        $time = now();
+        $results = $this->orderService->revenueMonth($month, $time->format('Y'));
+        return view('admin.dashboard.revenue', [
+            'title' => 'Thống kê theo tháng: ' . $month . ' | Năm: ' . $time->format('Y'),
+            'month' => $month,
+            'results' => $results
+        ]);
+    }
 }

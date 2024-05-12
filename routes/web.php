@@ -64,6 +64,8 @@ Route::middleware('checkRoleUser:super-admin,admin,employee,manager')->group(fun
     // Các route khác
     Route::get('/dashboard', [\App\Http\Controllers\Admin\HomeController::class, 'index'])->name('dashboard')->middleware('auth');
     Route::get('/dashboard/revenue', [\App\Http\Controllers\Admin\HomeController::class, 'revenue'])->name('dashboard.revenue')->middleware('auth');
+    Route::post('/dashboard/revenue-month', [\App\Http\Controllers\Admin\HomeController::class, 'revenueMonth'])->name('dashboard.revenue-month')->middleware('auth');
+    Route::post('/dashboard/revenue-day', [\App\Http\Controllers\Admin\HomeController::class, 'revenueDay'])->name('dashboard.revenue-day')->middleware('auth');
 
     Route::group(['prefix' => 'roles', 'middleware' => ['auth']], function () {
         Route::get('/', [\App\Http\Controllers\Admin\RoleController::class, 'index'])->name('roles.index')->middleware('role:super-admin');

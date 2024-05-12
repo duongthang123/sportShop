@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center align-items-center" style="height: 70vh">
         <div class="login-box" style="max-width: 400px">
             <div class="login-logo">
                 <a><b>DTSportShop</b></a>

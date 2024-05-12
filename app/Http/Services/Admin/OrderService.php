@@ -64,4 +64,14 @@ class OrderService
     {
         return $this->orderRepository->numberOrderDestroy();
     }
+
+    public function revenueDay($key)
+    {
+        return $this->orderRepository->revenueDay($key);
+    }
+
+    public function revenueMonth($month, $year)
+    {
+        return $this->orderRepository->revenueMonth($month, $year);
+    }
 }
