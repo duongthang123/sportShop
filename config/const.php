@@ -14,5 +14,9 @@ return [
         10 => 'Tháng 10',
         11 => 'Tháng 11',
         12 => 'Tháng 12',
+    ],
+    'product' => [
+        'best_sell' => 'Bán chạy nhất',
+        'excess_inventory' => 'Bán chậm'
     ]
 ];

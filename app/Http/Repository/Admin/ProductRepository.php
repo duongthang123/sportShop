@@ -55,4 +55,18 @@ class ProductRepository
         return $this->product::searchProduct($request)->latest('id')->paginate(10);
     }
 
+    public function revenueProduct($request, $limit = 10)
+    {
+        if($request['product_key'] === 'best_sell')
+        {
+            return $this->product::whereNotNull('quantity_sell')
+                    ->orderByDesc('quantity_sell')->limit($limit)->paginate(5);
+        }elseif($request['product_key'] === 'excess_inventory')
+        {
+            return $this->product::whereNull('quantity_sell')
+                    ->orderByDesc('id')->limit($limit)->paginate(5);
+        }
+        return null;
+    }
+
 }
