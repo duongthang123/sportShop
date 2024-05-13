@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\Admin\OrderService;
+use App\Http\Services\Admin\ProductService;
 use App\Http\Services\Admin\UserService;
 use Illuminate\Http\Request;
 
@@ -11,11 +12,13 @@ class HomeController extends Controller
 {
     protected $orderService;
     protected $userService;
+    protected $productService;
 
-    public function __construct(OrderService $orderService, UserService $userService)
+    public function __construct(OrderService $orderService, UserService $userService, ProductService $productService)
     {
         $this->orderService = $orderService;
         $this->userService = $userService;
+        $this->productService = $productService;
     }
 
     public function index(Request $request)
@@ -58,5 +61,17 @@ class HomeController extends Controller
             'month' => $month,
             'results' => $results
         ]);
+    }
+
+    public function revenueProduct()
+    {
+        return view('admin.dashboard.revenueProduct');
+    }
+
+    public function revenueProductByKey(Request $request)
+    {
+        $request = $request->all();
+        $products = $this->productService->revenueProduct($request);
+        return view('admin.dashboard.revenueProduct', compact('products'));
     }
 }

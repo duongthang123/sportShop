@@ -1,6 +1,6 @@
 @extends('admin.layouts.index')
 
-@section('title', 'Quản lý đơn hàng')
+@section('title', 'Thống kê doanh thu')
 @section('content')
     <div class="card-body">
         <h1>Thống kê doanh thu</h1>

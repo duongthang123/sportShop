@@ -163,4 +163,9 @@ class ProductService
     {
         return $this->productRepository->search($request);
     }
+
+    public function revenueProduct($request)
+    {
+        return $this->productRepository->revenueProduct($request);
+    }
 }
