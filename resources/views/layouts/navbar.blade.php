@@ -12,6 +12,6 @@
 {{--            </ul>--}}
 {{--        </li>--}}
         <li><a href="{{route('news')}}">Tin tức</a></li>
-        <li><a href="./contact.html">Liên hệ</a></li>
+        <li><a href="{{route('about')}}">Liên hệ</a></li>
     </ul>
 </nav>

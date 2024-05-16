@@ -10,7 +10,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-6">
-                        <img style="margin-bottom: 6px" src="{{asset('client/img/logo.png')}}">
+                        <img style="margin-bottom: 6px; width: 260px" src="{{asset('client/img/logonewhead.jpeg')}}">
                         <p style="margin: 0;padding-top: 8px"><b>Địa chỉ:</b> số 32, Lương Xá, Lương Điền, Cẩm Giàng, Hải Dương</p>
                         <p style="margin: 0; padding-top: 8px"><b>Số điện thoại:</b> 0961172512</p>
                     </div>
@@ -92,6 +92,7 @@
         <div class="card-footer">
             <div class="row">
                 <div class="col-6">
+                    <a href="{{route('orders.index')}}" class="btn btn-danger">Quay Lại</a>
                     <a href="{{route('orders.order_pdf', $order->id)}}" class="btn btn-primary">Xuất Hóa Đơn</a>
                 </div>
             </div>

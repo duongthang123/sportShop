@@ -20,6 +20,7 @@ use App\Http\Controllers\Auth\VerificationController;
 
 // Client
 Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/about', [\App\Http\Controllers\HomeController::class, 'about'])->name('about');
 Route::get('/shop', [\App\Http\Controllers\ShopController::class, 'index'])->name('shop');
 Route::get('/shop/sort', [\App\Http\Controllers\ShopController::class, 'sort'])->name('shop.sort');
 Route::get('/shop/filter-product', [\App\Http\Controllers\ShopController::class, 'filterProduct'])->name('shop.filterProduct');
