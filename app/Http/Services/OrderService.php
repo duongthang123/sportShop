@@ -82,4 +82,9 @@ class OrderService
     {
         return $this->orderRepository->getStatusOrderById($orderId, $userId);
     }
+
+    public function getOrderById($orderId)
+    {
+        return $this->orderRepository->getOrderById($orderId);
+    }
 }

@@ -31,4 +31,9 @@ class HomeController extends Controller
         $productSales = $this->productService->getProductSale();
         return view('home', compact('productNews', 'productSales'));
     }
+
+    public function about()
+    {
+        return view('about');
+    }
 }
