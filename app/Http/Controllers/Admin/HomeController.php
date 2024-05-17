@@ -37,7 +37,12 @@ class HomeController extends Controller
 
     public function revenue()
     {
-        return view('admin.dashboard.revenue');
+        $time =now();
+        $revenueMonth = $this->orderService->getAllTotalMoneyMonth($time->format('Y'));
+        return view('admin.dashboard.revenue', [
+            'revenues' => $revenueMonth->pluck('total'),
+            'months' => $revenueMonth->pluck('month'),
+        ]);
     }
 
     public function revenueDay(Request $request)

@@ -86,4 +86,16 @@ class OrderRepository
             'cancelled_orders' => $cancelledOrders
         ];
     }
+
+    public function getAllTotalMoneyMonth($year)
+    {
+        $results = $this->order
+            ->selectRaw('MONTH(created_at) as month, SUM(total) as total')
+            ->whereYear('created_at', $year)
+            ->where('status', 'Hoàn thành')
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+        return $results;
+    }
 }

@@ -74,4 +74,9 @@ class OrderService
     {
         return $this->orderRepository->revenueMonth($month, $year);
     }
+
+    public function getAllTotalMoneyMonth($year)
+    {
+        return $this->orderRepository->getAllTotalMoneyMonth($year);
+    }
 }

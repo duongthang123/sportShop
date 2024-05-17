@@ -66,7 +66,7 @@
                                         <div class="col-md-12" style="margin-top: 12px">
                                             <div class="form-group">
                                                 <label>Chọn màu sắc:</label>
-                                                <div class="color-options">
+                                                <div class="color-options" >
                                                     @foreach($product['details'] as $item)
                                                             <label class="color-option p-2" data-qty="{{$item->quantity}}" data-size="{{$item->size}}">
                                                                 <input type="radio" name="color" value="{{$item->color}}">
@@ -221,6 +221,7 @@
                 });
                 $('#product_qty').text(quantity > 0 ? quantity : 'Đã hết hàng');
             })
+            $('.color-option').hide();
         });
     </script>
 @endsection
