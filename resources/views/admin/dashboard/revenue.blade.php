@@ -36,30 +36,67 @@
                 </div>
             </div>
 
+
             <h4 style="font-weight: 550">
                 {{ isset($title) ? $title : '' }}
             </h4>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th style="width: 200px;">Số đơn hàng</th>
-                        <th>Tổng doanh thu</th>
-                        <th style="width: 200px">Số đơn thành công</th>
-                        <th style="width: 200px">Số đơn hủy</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @if(isset($results))
-                        <tr style="">
-                            <td style="width: 200px;">{{ $results['total_orders'] }}</td>
-                            <td>{{ number_format($results['total_money']) }}</td>
-                            <td style="width: 200px">{{ $results['successful_orders'] }}</td>
-                            <td style="width: 200px">{{ $results['cancelled_orders'] }}</td>
+            @if(isset($results))
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th style="width: 200px;">Số đơn hàng</th>
+                            <th>Tổng doanh thu</th>
+                            <th style="width: 200px">Số đơn thành công</th>
+                            <th style="width: 200px">Số đơn hủy</th>
                         </tr>
-                    @endif
-                </tbody>
-            </table>
+                    </thead>
+
+                    <tbody>
+                            <tr style="">
+                                <td style="width: 200px;">{{ $results['total_orders'] }}</td>
+                                <td>{{ number_format($results['total_money']) }}</td>
+                                <td style="width: 200px">{{ $results['successful_orders'] }}</td>
+                                <td style="width: 200px">{{ $results['cancelled_orders'] }}</td>
+                            </tr>
+                    </tbody>
+                </table>
+            @endif
+
+
+            @if(isset($revenues))
+                <h3 class="header">Biểu đồ doanh thu</h3>
+                <canvas id="revenueChart" width="400" height="200"></canvas>
+            @endif
         </div>
     </div>
 @endsection
+
+@push('script')
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    @if(isset($revenues))
+        <script>
+            var ctx = document.getElementById('revenueChart').getContext('2d');
+            var revenueChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: {!! json_encode($months) !!},
+                    datasets: [{
+                        label: 'Doanh thu theo tháng',
+                        data: {!! json_encode($revenues) !!},
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+    @endif
+
+@endpush

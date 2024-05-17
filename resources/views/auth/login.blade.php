@@ -5,7 +5,7 @@
     <div class="row justify-content-center align-items-center" style="height: 70vh">
         <div class="login-box" style="max-width: 400px">
             <div class="login-logo">
-                <a><b>DTSportShop</b></a>
+                <a href="{{route('home')}}" style="text-decoration: none"><b>DTSportShop</b></a>
             </div>
             <!-- /.login-logo -->
             <div class="card">

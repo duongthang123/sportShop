@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="about__pic">
-                        <img src="{{asset('client/img/about/aboutshop.jpg')}}" alt="">
+                        <img src="{{asset('client/img/banner-sport.jpeg')}}" alt="">
                     </div>
                 </div>
             </div>

@@ -10,6 +10,7 @@
             <!-- /.login-logo -->
             <div class="card">
                 <div class="card-body login-card-body">
+                    <p class="login-box-msg text-danger" style="font-weight: 600">Chức năng này đang trong quá trình phát triển, vui lòng đợi!</p>
                     <p class="login-box-msg">Hãy nhập email để lấy lại mật khẩu của bạn!</p>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -33,7 +34,7 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary btn-block">Gửi yêu cầu</button>
+                                <button disabled type="submit" class="btn btn-primary btn-block">Gửi yêu cầu</button>
                             </div>
                             <!-- /.col -->
                         </div>
