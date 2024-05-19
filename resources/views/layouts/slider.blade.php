@@ -4,15 +4,15 @@
             <div class="owl-stage"
                  style="transform: translate3d(-3348px, 0px, 0px); transition: all 0s ease 0s; width: 6696px;">
                 <div class="owl-item cloned" style="width: 1116px;">
-                    <div class="hero__items set-bg" data-setbg="{{asset('client/img/hero/hero-1.jpg')}}"
+                    <div class="hero__items set-bg" data-setbg="https://file.hstatic.net/200000293662/file/2324_home_kit_homepage_hero_banner_2453x941_07b9d070c9dd4d7294e2648477cfc437.webp"
                          style="background-image: url(&quot;img/hero/hero-1.jpg&quot;);">
                         <div class="container">
                             <div class="row">
                                 <div class="col-xl-5 col-lg-7 col-md-8">
                                     <div class="hero__text">
-                                        <h6>Mùa hè rực lửa</h6>
-                                        <h2>Rực lửa mùa Euro - 2024</h2>
-                                        <p>Khám phá - Thỏa sức cháy với cùng trang phục các đội tuyển quốc gia.</p>
+                                        <h6 style="color: #fff">Mùa hè rực lửa</h6>
+                                        <h2 style="color: #ffffff">Rực lửa mùa Euro - 2024</h2>
+                                        <p style="color: #fff">Khám phá - Thỏa sức cháy với cùng trang phục các đội tuyển quốc gia.</p>
                                         <a href="{{route('shop')}}" class="primary-btn">Mua ngay<span class="arrow_right"></span></a>
                                         <div class="hero__social">
                                             <a href="#"><i class="fa fa-facebook"></i></a>

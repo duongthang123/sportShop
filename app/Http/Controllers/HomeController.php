@@ -29,7 +29,8 @@ class HomeController extends Controller
     {
         $productNews = $this->productService->getProductNews();
         $productSales = $this->productService->getProductSale();
-        return view('home', compact('productNews', 'productSales'));
+        $productBestSale = $this->productService->getProductBestSale();
+        return view('home', compact('productNews', 'productSales', 'productBestSale'));
     }
 
     public function about()

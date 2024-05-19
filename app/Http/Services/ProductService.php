@@ -23,6 +23,11 @@ class ProductService
         return $this->productRepository->getProductSale();
     }
 
+    public function getProductBestSale()
+    {
+        return $this->productRepository->getProductBestSale();
+    }
+
     public function getAll()
     {
         return $this->productRepository->getAll();

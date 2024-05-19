@@ -173,7 +173,7 @@
                             </div>
                             <div class="product__item__text">
                                 <h6>{{$product->name}}</h6>
-                                <a href="#" class="add-cart">+ Thêm giỏ hàng</a>
+                                <a href="{{route('product', $product->id)}}" class="add-cart">Mua ngay</a>
                                 <div class="rating">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>

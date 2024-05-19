@@ -89,7 +89,7 @@
                                 const element = `
                                 <li class="d-flex flex-row justify-content-end">
                                     <div>
-                                        <p style="border-radius:4px " class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">${message.message}</p>
+                                        <p style="border-radius:4px " class="small p-2 me-3 mb-1 text-white rounded-3 mr-2 bg-primary">${message.message}</p>
                                         <p class="small me-3 mb-3 rounded-3 text-muted float-right"> ${timeFormat} | ${message.user.name}</p>
                                     </div>
                                      <img src="${'{{ asset('uploads/') }}' + '/' + message.user.images[0].url}" alt="avatar 1" style="border-radius: 50%;width: 45px; height: 100%;">
@@ -102,7 +102,7 @@
                                 <li class="d-flex flex-row justify-content-start">
                                      <img src="${'{{ asset('uploads/') }}' + '/' + message.user.images[0].url}" alt="avatar 1" style="border-radius: 50%;width: 45px; height: 100%;">
                                     <div>
-                                        <p class="small p-2 ms-3 mb-1 rounded-3 bg-primary" style="border-radius:4px;background-color: #f5f6f7;">
+                                        <p class="small p-2 ms-3 mb-1 rounded-3 ml-2" style="border-radius:4px;background-color: #ddd;">
                                             ${message.message}
                                         </p>
                                         <p class="small ms-3 mb-3 rounded-3 text-muted float-end">${message.user.name} | ${timeFormat}</p>
@@ -151,7 +151,7 @@
                     const element = `
                                 <li class="d-flex flex-row justify-content-end">
                                     <div>
-                                        <p style="border-radius:4px " class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">${e.message}</p>
+                                        <p style="border-radius:4px " class="small p-2 me-3 mb-1 text-white mr-2 rounded-3 bg-primary">${e.message}</p>
                                         <p class="small me-3 mb-3 rounded-3 text-muted">${timeFormat}</p>
                                     </div>
                                     <img src="${'{{ asset('uploads/') }}' + '/' + e.user.images[0].url}" alt="avatar 1" style="width: 45px; height: 100%;border-radius:50%">
@@ -164,7 +164,7 @@
                                 <li class="d-flex flex-row justify-content-start">
                                     <img src="${'{{ asset('uploads/') }}' + '/' + e.user.images[0].url}" alt="avatar 1" style="width: 45px; height: 100%;border-radius:50%">
                                     <div>
-                                        <p class="small p-2 ms-3 mb-1 rounded-3 bg-primary" style="border-radius:4px;background-color: #f5f6f7;">
+                                        <p class="small p-2 ms-3 mb-1 ml-2 rounded-3" style="border-radius:4px;background-color: #ddd;">
                                             ${e.message}
                                         </p>
                                         <p class="small ms-3 mb-3 rounded-3 text-muted float-end">${timeFormat}</p>

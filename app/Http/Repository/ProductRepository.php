@@ -28,6 +28,15 @@ class ProductRepository
             ->limit($limit)->get();
     }
 
+    public function getProductBestSale($limit = 12)
+    {
+        return $this->product::select('id', 'name', 'price', 'sale')
+            ->where('active', 1)
+            ->where('quantity_sell', '>', 0)
+            ->orderByDesc('quantity_sell')
+            ->limit($limit)->get();
+    }
+
     public function getAll()
     {
         return $this->product::select('id', 'name', 'price', 'sale')
