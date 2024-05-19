@@ -38,6 +38,10 @@ class CategoryService
     {
         $dataUpdate = $request->all();
         $category = $this->categoryRepository->getCategoryById($id);
+        if($dataUpdate['parent_id'] == $category->id) {
+            toastr()->error('Không thể cập nhật danh mục');
+            return false;
+        }
         return $category->update($dataUpdate);
     }
     public function createCategory($request)

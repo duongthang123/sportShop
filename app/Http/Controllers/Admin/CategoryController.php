@@ -67,9 +67,12 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, string $id)
     {
-        $this->categoryService->updateCategory($request, $id);
-        toastr()->success('Cập nhật danh mục thành công!');
-        return redirect()->route('categories.index');
+        $result = $this->categoryService->updateCategory($request, $id);
+        if($result) {
+            toastr()->success('Cập nhật danh mục thành công!');
+            return redirect()->route('categories.index');
+        }
+        return back();
     }
 
     /**
